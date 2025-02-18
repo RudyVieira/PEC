@@ -13,11 +13,12 @@ class UserManager {
     }
 
     public function save(User $user) {
-        $stmt = $this->pdo->prepare("INSERT INTO Utilisateur (nom, prenom, email, motDePasse, validationMail, role) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $this->pdo->prepare("INSERT INTO Utilisateur (nom, prenom, email, telephone, motDePasse, validationMail, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([
             $user->getNom(),
             $user->getPrenom(),
             $user->getEmail(),
+            $user->getTelephone(),
             $user->getMotDePasse(),
             (int)$user->getValidationMail(),
             $user->getRole()
@@ -36,19 +37,7 @@ class UserManager {
     public function findByEmail($email) {
         $stmt = $this->pdo->prepare("SELECT * FROM Utilisateur WHERE email = ?");
         $stmt->execute([$email]);
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($data) {
-            $user = new User();
-            $user->setId($data['id']);
-            $user->setNom($data['nom']);
-            $user->setPrenom($data['prenom']);
-            $user->setEmail($data['email']);
-            $user->setMotDePasse($data['motDePasse']);
-            $user->setValidationMail($data['validationMail']);
-            $user->setRole($data['role']);
-            return $user;
-        }
-        return null;
+        $stmt->setFetchMode(PDO::FETCH_CLASS, User::class);
+        return $stmt->fetch();
     }
 }

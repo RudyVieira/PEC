@@ -33,14 +33,16 @@ class RegisterController extends AbstractController {
         $nom = $request->get('nom');
         $prenom = $request->get('prenom');
         $email = $request->get('email');
+        $telephone = $request->get('telephone');
         $motDePasse = $request->get('motDePasse');
         $role = $request->get('role');
 
-        if (empty($nom) || empty($prenom) || empty($email) || empty($motDePasse) || empty($role)) {
+        if (empty($nom) || empty($prenom) || empty($email) || empty($telephone) || empty($motDePasse) || empty($role)) {
             error_log('Validation failed:');
             error_log('Nom: ' . ($nom ? $nom : 'empty'));
             error_log('Prenom: ' . ($prenom ? $prenom : 'empty'));
             error_log('Email: ' . ($email ? $email : 'empty'));
+            error_log('Telephone: ' . ($telephone ? $telephone : 'empty'));
             error_log('MotDePasse: ' . ($motDePasse ? $motDePasse : 'empty'));
             error_log('Role: ' . ($role ? $role : 'empty'));
             return new Response(json_encode(['message' => 'Tous les champs sont obligatoires.']), 400, ['Content-Type' => 'application/json']);
@@ -54,6 +56,7 @@ class RegisterController extends AbstractController {
         $user->setNom($nom);
         $user->setPrenom($prenom);
         $user->setEmail($email);
+        $user->setTelephone($telephone);
         $user->setMotDePasse(password_hash($motDePasse, PASSWORD_BCRYPT));
         $user->setValidationMail(false);
         $user->setRole($role);

@@ -13,7 +13,7 @@ class ProfilController extends AbstractController {
     public function process(Request $request): Response {
         session_start();
         if (!isset($_SESSION['user_email'])) {
-            return new Response('Unauthorized', 401, ['Content-Type' => 'text/plain']);
+            return new Response('', 302, ['Location' => '/login']);
         }
 
         $config = json_decode(file_get_contents(__DIR__ . '/../../config/database.json'), true);

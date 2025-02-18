@@ -7,6 +7,7 @@ class User {
     private $nom;
     private $prenom;
     private $email;
+    private $telephone;
     private $motDePasse;
     private $validationMail;
     private $role;
@@ -41,6 +42,14 @@ class User {
 
     public function setEmail($email) {
         $this->email = $email;
+    }
+
+    public function getTelephone() {
+        return $this->telephone;
+    }
+
+    public function setTelephone($telephone) {
+        $this->telephone = $telephone;
     }
 
     public function getMotDePasse() {

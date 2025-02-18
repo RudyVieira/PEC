@@ -5,6 +5,11 @@
         "controller": "TestController"
     },
     {
+        "path": "/logout",
+        "methods": ["GET"],
+        "controller": "LogoutController"
+    },
+    {
         "path": "/register",
         "methods": ["GET", "POST"],
         "controller": "RegisterController"
