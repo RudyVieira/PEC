@@ -2,6 +2,6 @@
     "host": "php-framework-db",
     "user": "root",
     "password": "password",
-    "database": "spotify",
+    "database": "doc_2_wheels",
     "port": 3306
 }

@@ -25,3 +25,14 @@ services:
                - 3306:3306
           volumes:
                - ./mysql:/var/lib/mysql
+     phpmyadmin:
+          container_name: phpmyadmin
+          image: phpmyadmin/phpmyadmin:latest
+          restart: unless-stopped
+          environment:
+               PMA_HOST: php-framework-db
+               MYSQL_ROOT_PASSWORD: 'password'
+          ports:
+               - 8081:80
+          depends_on:
+               - php-framework-db
