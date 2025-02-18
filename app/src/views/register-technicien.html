@@ -8,10 +8,11 @@
 <body>
     <h1>Inscription Technicien</h1>
     <form action="/register-technicien" method="POST">
-        <input type="hidden" name="role" value="technicien">
+        <input type="hidden" name="role" value="utilisateur">
         <input type="text" name="nom" placeholder="Nom" required>
         <input type="text" name="prenom" placeholder="Prénom" required>
         <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="telephone" placeholder="Téléphone" required>
         <input type="password" name="motDePasse" placeholder="Mot de passe" required>
         <button type="submit">S'inscrire</button>
     </form>

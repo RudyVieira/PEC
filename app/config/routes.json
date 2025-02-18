@@ -15,6 +15,11 @@
         "controller": "RegisterController"
     },
     {
+        "path": "/register-technicien",
+        "methods": ["GET", "POST"],
+        "controller": "RegisterController"
+    },
+    {
         "path": "/login",
         "methods": ["GET", "POST"],
         "controller": "LoginController"

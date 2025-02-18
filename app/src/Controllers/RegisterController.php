@@ -35,7 +35,7 @@ class RegisterController extends AbstractController {
         $email = $request->get('email');
         $telephone = $request->get('telephone');
         $motDePasse = $request->get('motDePasse');
-        $role = $request->get('role');
+        $role = $request->getPath() === '/register-technicien' ? 'technicien' : 'utilisateur';
 
         if (empty($nom) || empty($prenom) || empty($email) || empty($telephone) || empty($motDePasse) || empty($role)) {
             error_log('Validation failed:');
