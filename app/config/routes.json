@@ -5,6 +5,26 @@
         "controller": "TestController"
     },
     {
+        "path": "/register",
+        "methods": ["GET", "POST"],
+        "controller": "RegisterController"
+    },
+    {
+        "path": "/login",
+        "methods": ["GET", "POST"],
+        "controller": "LoginController"
+    },
+    {
+        "path": "/profil",
+        "methods": ["GET"],
+        "controller": "ProfilController"
+    },
+    {
+        "path": "/validate.php",
+        "methods": ["GET"],
+        "controller": "ValidateController"
+    },
+    {
         "path": "/artists/:id",
         "methods": ["GET"],
         "controller": "GetArtistController"
