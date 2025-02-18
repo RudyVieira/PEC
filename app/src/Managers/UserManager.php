@@ -13,29 +13,24 @@ class UserManager {
     }
 
     public function save(User $user) {
-        if ($user->getId()) {
-            $stmt = $this->pdo->prepare("UPDATE Utilisateur SET nom = ?, prenom = ?, email = ?, motDePasse = ?, validationMail = ?, role = ? WHERE id = ?");
-            $stmt->execute([
-                $user->getNom(),
-                $user->getPrenom(),
-                $user->getEmail(),
-                $user->getMotDePasse(),
-                (int)$user->getValidationMail(),
-                $user->getRole(),
-                $user->getId()
-            ]);
-        } else {
-            $stmt = $this->pdo->prepare("INSERT INTO Utilisateur (nom, prenom, email, motDePasse, validationMail, role) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([
-                $user->getNom(),
-                $user->getPrenom(),
-                $user->getEmail(),
-                $user->getMotDePasse(),
-                (int)$user->getValidationMail(),
-                $user->getRole()
-            ]);
-            $user->setId($this->pdo->lastInsertId());
-        }
+        $stmt = $this->pdo->prepare("INSERT INTO Utilisateur (nom, prenom, email, motDePasse, validationMail, role) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->execute([
+            $user->getNom(),
+            $user->getPrenom(),
+            $user->getEmail(),
+            $user->getMotDePasse(),
+            (int)$user->getValidationMail(),
+            $user->getRole()
+        ]);
+        return $this->pdo->lastInsertId();
+    }
+
+    public function update(User $user) {
+        $stmt = $this->pdo->prepare("UPDATE Utilisateur SET validationMail = ? WHERE email = ?");
+        $stmt->execute([
+            (int)$user->getValidationMail(),
+            $user->getEmail()
+        ]);
     }
 
     public function findByEmail($email) {

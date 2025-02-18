@@ -29,27 +29,40 @@ class RegisterController extends AbstractController {
 
         $userManager = new UserManager($pdo);
         $user = new User();
-        $user->setNom($request->get('nom'));
-        $user->setPrenom($request->get('prenom'));
-        $user->setEmail($request->get('email'));
-        $user->setMotDePasse(password_hash($request->get('motDePasse'), PASSWORD_BCRYPT));
+
+        $nom = $request->get('nom');
+        $prenom = $request->get('prenom');
+        $email = $request->get('email');
+        $motDePasse = $request->get('motDePasse');
+        $role = $request->get('role');
+
+        if (empty($nom) || empty($prenom) || empty($email) || empty($motDePasse) || empty($role)) {
+            error_log('Validation failed:');
+            error_log('Nom: ' . ($nom ? $nom : 'empty'));
+            error_log('Prenom: ' . ($prenom ? $prenom : 'empty'));
+            error_log('Email: ' . ($email ? $email : 'empty'));
+            error_log('MotDePasse: ' . ($motDePasse ? $motDePasse : 'empty'));
+            error_log('Role: ' . ($role ? $role : 'empty'));
+            return new Response(json_encode(['message' => 'Tous les champs sont obligatoires.']), 400, ['Content-Type' => 'application/json']);
+        }
+
+        $existingUser = $userManager->findByEmail($email);
+        if ($existingUser) {
+            return new Response(json_encode(['message' => 'Cette adresse e-mail est déjà utilisée.']), 400, ['Content-Type' => 'application/json']);
+        }
+
+        $user->setNom($nom);
+        $user->setPrenom($prenom);
+        $user->setEmail($email);
+        $user->setMotDePasse(password_hash($motDePasse, PASSWORD_BCRYPT));
         $user->setValidationMail(false);
-        $user->setRole($request->get('role'));
+        $user->setRole($role);
 
         $userManager->save($user);
 
-        // Envoyer l'e-mail de validation
         $config = json_decode(file_get_contents(__DIR__ . '/../../config/database.json'), true);
         try {
-            // Tentative de création d’une nouvelle instance de la classe PHPMailer, avec les exceptions activées
-            $mail = new PHPMailer (true);
-        // (…)
-        } catch (Exception $e) {
-                echo "Mailer Error: ".$e->getMessage();
-        }
-
-        try {
-            // Configuration du serveur SMTP
+            $mail = new PHPMailer(true);
             $mail->isSMTP();
             $mail->Host = $config['smtp']['host'];
             $mail->SMTPAuth = true;
@@ -58,11 +71,9 @@ class RegisterController extends AbstractController {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = $config['smtp']['port'];
 
-            // Destinataires
             $mail->setFrom('no-reply@yourdomain.com', 'Your App Name');
             $mail->addAddress($user->getEmail());
 
-            // Contenu de l'e-mail
             $mail->isHTML(true);
             $mail->Subject = 'Validation de votre compte';
             $validationLink = "http://localhost:8080/validate.php?email=" . $user->getEmail();

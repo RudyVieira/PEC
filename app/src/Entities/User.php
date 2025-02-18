@@ -11,7 +11,6 @@ class User {
     private $validationMail;
     private $role;
 
-    // Getters et setters pour chaque propriété
     public function getId() {
         return $this->id;
     }
@@ -57,7 +56,7 @@ class User {
     }
 
     public function setValidationMail($validationMail) {
-        $this->validationMail = (int)$validationMail; // Cast to integer
+        $this->validationMail = (int)$validationMail;
     }
 
     public function getRole() {

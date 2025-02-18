@@ -1,16 +1,11 @@
-# Ignorer les fichiers de configuration de l'éditeur
 .vscode/
 .idea/
 
-# Ignorer les fichiers de logs
 logs/
 
-# Ignorer les fichiers de Composer
 vendor/
 
-# Ignorer les fichiers de base de données
 mysql/
 
-# Ignorer les fichiers de Composer
 composer.lock
 composer.phar
