@@ -2,13 +2,17 @@
 
 namespace App\Controllers;
 
-use App\Http\Request;
-use App\Http\Response;
+use App\Lib\Http\Request;
+use App\Lib\Http\Response;
+use App\Lib\Controllers\AbstractController;
 
 class TestController extends AbstractController {
 
 
     public function process(Request $request): Response {
-        return new Response('Test Controller');
+        return $this->render('test', [
+            'title' => 'Pouet',
+            'items' => ['foo', 'bar', 'baz'],
+        ]);;
     }
 }

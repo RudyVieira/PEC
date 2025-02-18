@@ -3,5 +3,30 @@
         "path": "/test",
         "methods": ["GET"],
         "controller": "TestController"
+    },
+    {
+        "path": "/artists/:id",
+        "methods": ["GET"],
+        "controller": "GetArtistController"
+    },
+    {
+        "path": "/artists/:id",
+        "methods": ["PATCH"],
+        "controller": "PatchArtistController"
+    },
+    {
+        "path": "/artists/:id",
+        "methods": ["DELETE"],
+        "controller": "DeleteArtistController"
+    },
+    {
+        "path": "/artists",
+        "methods": ["GET"],
+        "controller": "GetArtistsController"
+    },
+    {
+        "path": "/artists",
+        "methods": ["POST"],
+        "controller": "PostArtistController"
     }
 ]
