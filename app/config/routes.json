@@ -30,6 +30,11 @@
         "controller": "ProfilController"
     },
     {
+        "path": "/modify-profil",
+        "methods": ["GET", "POST"],
+        "controller": "ModifyProfilController"
+    },
+    {
         "path": "/validate.php",
         "methods": ["GET"],
         "controller": "ValidateController"

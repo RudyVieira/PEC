@@ -13,8 +13,7 @@ class LoginController extends AbstractController {
 
     public function process(Request $request): Response {
         if ($request->getMethod() === 'GET') {
-            $view = 'login.html';
-            return new Response(file_get_contents(__DIR__ . '/../Views/' . $view), 200, ['Content-Type' => 'text/html']);
+            return new Response(file_get_contents(__DIR__ . '/../Views/login.html'), 200, ['Content-Type' => 'text/html']);
         }
 
         try {
@@ -29,16 +28,13 @@ class LoginController extends AbstractController {
 
         $user = $userManager->findByEmail($email);
 
-        if ($user && password_verify($motDePasse, $user->getMotDePasse())) {
-            if ($user->getValidationMail()) {
-                session_start();
-                $_SESSION['user_email'] = $user->getEmail();
-                return new Response('', 302, ['Location' => '/profil']);
-            } else {
-                return new Response(json_encode(['message' => 'Veuillez valider votre e-mail avant de vous connecter.']), 403, ['Content-Type' => 'application/json']);
-            }
-        } else {
-            return new Response(json_encode(['message' => 'Email ou mot de passe incorrect.']), 401, ['Content-Type' => 'application/json']);
+        if (!$user || !password_verify($motDePasse, $user->getMotDePasse())) {
+            return new Response(json_encode(['message' => 'Invalid email or password']), 400, ['Content-Type' => 'application/json']);
         }
+
+        session_start();
+        $_SESSION['user_email'] = $user->getEmail();
+
+        return new Response('', 302, ['Location' => '/profil']);
     }
 }
