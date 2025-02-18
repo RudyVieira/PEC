@@ -1,0 +1,11 @@
+.vscode/
+.idea/
+
+logs/
+
+vendor/
+
+mysql/
+
+composer.lock
+composer.phar
