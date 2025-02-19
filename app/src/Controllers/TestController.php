@@ -11,7 +11,7 @@ class TestController extends AbstractController {
 
     public function process(Request $request): Response {
         return $this->render('test', [
-            'title' => 'Pouet',
+            'title' => 'Doc 2 wheels',
             'items' => ['foo', 'bar', 'baz'],
         ]);;
     }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <?= $title ?>
+    </title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const services = <?= json_encode($services) ?>;
+            const serviceSelect = document.getElementById('idService');
+            const tarifInput = document.getElementById('tarif');
+
+            serviceSelect.addEventListener('change', function () {
+                const selectedServiceId = parseInt(serviceSelect.value);
+                const selectedService = services.find(service => service.id === selectedServiceId);
+                if (selectedService) {
+                    tarifInput.value = selectedService.tarifMinimum;
+                }
+            });
+
+            if (services.length > 0) {
+                tarifInput.value = services[0].tarifMinimum;
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <h1>
+        <?= $title ?>
+    </h1>
+
+    <?php if (!empty($message)): ?>
+    <p>
+        <?= $message ?>
+    </p>
+    <?php endif; ?>
+
+    <form action="/reserved" method="post">
+        <label for="dateDemande">Date de demande:</label>
+        <input type="date" id="dateDemande" name="dateDemande" required><br>
+
+        <label for="lieuIntervention">Lieu d'intervention:</label>
+        <input type="text" id="lieuIntervention" name="lieuIntervention" required><br>
+
+        <label for="horaireDebut">Horaire de début:</label>
+        <input type="time" id="horaireDebut" name="horaireDebut" required><br>
+
+        <label for="horaireFin">Horaire de fin:</label>
+        <input type="time" id="horaireFin" name="horaireFin" required><br>
+
+        <label for="statut">Statut:</label>
+        <input type="checkbox" id="statut" name="statut"><br>
+
+        <label for="tarif">Tarif:</label>
+        <input type="number" step="0.01" id="tarif" name="tarif" required readonly><br>
+
+        <label for="idUtilisateur">Utilisateur:</label>
+        <input type="number" id="idUtilisateur" name="idUtilisateur" required><br>
+
+        <label for="idService">Service:</label>
+        <select id="idService" name="idService" required>
+            <?php foreach ($services as $service): ?>
+            <option value="<?= $service['id'] ?>">
+                <?= $service['nom'] ?>
+            </option>
+            <?php endforeach; ?>
+        </select><br>
+
+        <label for="idTechnicien">Technicien:</label>
+        <select id="idTechnicien" name="idTechnicien" required>
+            <?php foreach ($technicians as $technician): ?>
+            <option value="<?= $technician['id'] ?>">
+                <?= $technician['nom'] ?>
+                <?= $technician['prenom'] ?> (
+                <?= $technician['plageHoraireDebut'] ?> -
+                <?= $technician['plageHoraireFin'] ?>)
+            </option>
+            <?php endforeach; ?>
+        </select><br>
+
+        <button type="submit">Réserver</button>
+    </form>
+</body>
+
+</html>
