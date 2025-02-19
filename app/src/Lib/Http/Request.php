@@ -7,7 +7,7 @@ class Request
     protected string $uri;
     protected string $path;
     protected string $method;
-    protected array $slugs = [];
+    protected array $slugs;
     protected array $urlParams;
     protected array $headers;
     protected string $payload;
@@ -66,19 +66,10 @@ class Request
 
     public function getBody(): array
     {
-
-        return $this->payload;
-    }
-
-    public function get(string $key, $default = null)
-    {
-        return $_POST[$key] ?? $this->urlParams[$key] ?? $default;
-
         if ($this->method === 'POST') {
             return $_POST;
         }
 
         return [];
-
     }
 }
