@@ -17,8 +17,9 @@ class Request
         $this->uri = $_SERVER['REQUEST_URI'];
         $this->path = parse_url($this->uri, PHP_URL_PATH);
         $this->method = $_SERVER['REQUEST_METHOD'];
-        $this->headers = getallheaders();
+        $this->slugs = [];
         $this->urlParams = $_GET;
+        $this->headers = getallheaders();
         $this->payload = file_get_contents('php://input');
     }
 
@@ -37,9 +38,9 @@ class Request
         return $this->method;
     }
 
-    public function addSlug(string $key, string $value): self {
+    public function addSlug(string $key, string $value): self
+    {
         $this->slugs[$key] = $value;
-        
         return $this;
     }
 
@@ -50,11 +51,7 @@ class Request
 
     public function getSlug(string $key): string
     {
-        if(!isset($this->slugs[$key])) {
-            return '';
-        }
-        
-        return $this->slugs[$key];
+        return $this->slugs[$key] ?? '';
     }
 
     public function getUrlParams(): array
@@ -67,8 +64,12 @@ class Request
         return $this->headers;
     }
 
-    public function getPayload(): string
+    public function getBody(): array
     {
-        return $this->payload;
-    }   
+        if ($this->method === 'POST') {
+            return $_POST;
+        }
+
+        return [];
+    }
 }

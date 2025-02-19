@@ -5,6 +5,11 @@
         "controller": "TestController"
     },
     {
+        "path": "/reserved",
+        "methods": ["GET", "POST"],
+        "controller": "ReservedController"
+    },
+    {
         "path": "/artists/:id",
         "methods": ["GET"],
         "controller": "GetArtistController"
