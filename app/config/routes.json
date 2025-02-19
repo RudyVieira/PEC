@@ -5,9 +5,45 @@
         "controller": "TestController"
     },
     {
+
+        "path": "/logout",
+        "methods": ["GET"],
+        "controller": "LogoutController"
+    },
+    {
+        "path": "/register",
+        "methods": ["GET", "POST"],
+        "controller": "RegisterController"
+    },
+    {
+        "path": "/register-technicien",
+        "methods": ["GET", "POST"],
+        "controller": "RegisterController"
+    },
+    {
+        "path": "/login",
+        "methods": ["GET", "POST"],
+        "controller": "LoginController"
+    },
+    {
+        "path": "/profil",
+        "methods": ["GET"],
+        "controller": "ProfilController"
+    },
+    {
+        "path": "/modify-profil",
+        "methods": ["GET", "POST"],
+        "controller": "ModifyProfilController"
+    },
+    {
+        "path": "/validate.php",
+        "methods": ["GET"],
+        "controller": "ValidateController"
+
         "path": "/reserved",
         "methods": ["GET", "POST"],
         "controller": "ReservedController"
+
     },
     {
         "path": "/artists/:id",

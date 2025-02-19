@@ -25,6 +25,8 @@ services:
                - 3306:3306
           volumes:
                - ./mysql:/var/lib/mysql
+
+
      phpmyadmin:
           container_name: phpmyadmin
           image: phpmyadmin/phpmyadmin:latest

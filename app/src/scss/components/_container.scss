@@ -1,0 +1,16 @@
+@use "../partials/variables" as v;
+@layer components {
+	.container {
+		margin-left: 2rem;
+		margin-right: 2rem;
+
+		@each $name, $screenSize in v.$breakpoints {
+			@media screen and (min-width: $screenSize) {
+				@if ($name == "sm") {
+					margin: auto;
+				}
+				max-width: calc($screenSize - 4rem);
+			}
+		}
+	}
+}
