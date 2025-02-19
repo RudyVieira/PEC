@@ -22,5 +22,4 @@ class DatabaseConnexion
     {
         $this->connexion = null;
     }
-
 }
