@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app/dist/css/outpout.css">
     <title>Inscription Technicien</title>
 </head>
 <body>
     <h1>Inscription Technicien</h1>
-    <form action="/register-technicien" method="POST">
-        <input type="hidden" name="role" value="utilisateur">
-        <input type="text" name="nom" placeholder="Nom" required>
-        <input type="text" name="prenom" placeholder="Prénom" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="text" name="telephone" placeholder="Téléphone" required>
-        <input type="password" name="motDePasse" placeholder="Mot de passe" required>
-        <button type="submit">S'inscrire</button>
-    </form>
-    <p>Vous êtes utilisateur ? <a href="/register">Inscrivez-vous ici</a></p>
-    <a href="/login">Déjà inscrit ?</a>
+    <div class="container-form">
+        <form action="/register-technicien" method="POST">
+            <input type="hidden" name="role" value="utilisateur">
+            <input type="text" name="nom" placeholder="Nom" required>
+            <input type="text" name="prenom" placeholder="Prénom" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="telephone" placeholder="Téléphone" required>
+            <input type="password" name="motDePasse" placeholder="Mot de passe" required>
+            <button type="submit">S'inscrire</button>
+        </form>
+        <p>Vous êtes utilisateur ? <a href="/register">Inscrivez-vous ici</a></p>
+        <a href="/login">Déjà inscrit ?</a>
+    </div>
 </body>
 </html>

@@ -1,0 +1,37 @@
+@use "../partials/variables" as v;
+@use "../partials/functions" as f;
+
+@layer components {
+    .menu {
+        padding: f.rem(20);
+        gap: f.rem(16);
+        border-radius: f.rem(6);
+        border: 1px solid;
+        box-shadow: 0 f.rem(4) f.rem(6) 0 var(--shadow-color);
+        width: auto;
+        color: var(--text-color);
+
+        & li {
+            list-style: none;
+            padding: f.rem(8) f.rem(10);
+            border-radius: f.rem(6);
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: var(--light-grey);
+                color: var(--text-color);
+            }
+        }
+
+        @each $name, $value in v.$colors {
+            @if $name != "text-color" and $name != "shadow-color" {
+                &--#{$name} {
+                    & li:hover {
+                        background-color: var(--#{$name}-hover);
+                        color: var(--white);
+                    }
+                }
+            }
+        }
+    }
+}
