@@ -35,6 +35,12 @@ class ModifyProfilController extends AbstractController {
             $prenom = $request->get('prenom');
             $email = $request->get('email');
             $telephone = $request->get('telephone');
+            $adresseBureau = $request->get('adresseBureau');
+            $codePostalBureau = $request->get('codePostalBureau');
+            $villeBureau = $request->get('villeBureau');
+            $adresseDomicile = $request->get('adresseDomicile');
+            $codePostalDomicile = $request->get('codePostalDomicile');
+            $villeDomicile = $request->get('villeDomicile');
 
             if (empty($nom) || empty($prenom) || empty($email) || empty($telephone)) {
                 return new Response(json_encode(['message' => 'Tous les champs sont obligatoires.']), 400, ['Content-Type' => 'application/json']);
@@ -44,6 +50,12 @@ class ModifyProfilController extends AbstractController {
             $user->setPrenom($prenom);
             $user->setEmail($email);
             $user->setTelephone($telephone);
+            $user->setAdresseBureau($adresseBureau);
+            $user->setCodePostalBureau($codePostalBureau);
+            $user->setVilleBureau($villeBureau);
+            $user->setAdresseDomicile($adresseDomicile);
+            $user->setCodePostalDomicile($codePostalDomicile);
+            $user->setVilleDomicile($villeDomicile);
 
             $userManager->update($user);
 
@@ -56,6 +68,12 @@ class ModifyProfilController extends AbstractController {
         $prenom = $user->getPrenom();
         $email = $user->getEmail();
         $telephone = $user->getTelephone();
+        $adresseBureau = $user->getAdresseBureau();
+        $codePostalBureau = $user->getCodePostalBureau();
+        $villeBureau = $user->getVilleBureau();
+        $adresseDomicile = $user->getAdresseDomicile();
+        $codePostalDomicile = $user->getCodePostalDomicile();
+        $villeDomicile = $user->getVilleDomicile();
 
         ob_start();
         include __DIR__ . '/../Views/modify-profil.html';

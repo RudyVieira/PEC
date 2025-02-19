@@ -5,7 +5,7 @@
 	.button {
 		@include m.resetA;
 		@include m.resetButton;
-		padding: f.rem(10) f.rem(25);
+		padding: f.rem(15) f.rem(25);
 		display: inline-block;
 		border-radius: f.rem(50);
 		background-color: var(--black);
@@ -24,24 +24,21 @@
 			line-height: f.rem(16);
 		}
 
-		&-primary {
-			background-color: var(--blue);
+		&-orange {
+			background-color: var(--orange);
+			color: var(--beige);
 			&:hover {
-				background-color: var(--blue-hover);
+				background-color: var(--orange-pale);
+				color: var(--black);
 			}
 		}
 
-		&-secondary {
-			background-color: var(--grey);
+		&-green {
+			background-color: var(--green);
+			color: var(--beige);
 			&:hover {
-				background-color: var(--grey-hover);
-			}
-		}
-
-		&-danger {
-			background-color: var(--red);
-			&:hover {
-				background-color: var(--red-hover);
+				background-color: var(--green-pale);
+				color: var(--black);
 			}
 		}
 	}

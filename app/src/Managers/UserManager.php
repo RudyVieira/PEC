@@ -30,7 +30,12 @@ class UserManager {
             (int)$user->getValidationMail(),
             $user->getRole()
         ]);
-        return $this->pdo->lastInsertId();
+        $userId = $this->pdo->lastInsertId();
+
+        $this->saveAddress($userId, 'bureau', $user->getAdresseBureau(), $user->getCodePostalBureau(), $user->getVilleBureau());
+        $this->saveAddress($userId, 'domicile', $user->getAdresseDomicile(), $user->getCodePostalDomicile(), $user->getVilleDomicile());
+
+        return $userId;
     }
 
     public function update(User $user) {
@@ -42,5 +47,18 @@ class UserManager {
             $user->getTelephone(),
             $user->getId()
         ]);
+
+        $this->updateAddress($user->getId(), 'bureau', $user->getAdresseBureau(), $user->getCodePostalBureau(), $user->getVilleBureau());
+        $this->updateAddress($user->getId(), 'domicile', $user->getAdresseDomicile(), $user->getCodePostalDomicile(), $user->getVilleDomicile());
+    }
+
+    private function saveAddress($userId, $type, $adresse, $codePostal, $ville) {
+        $stmt = $this->pdo->prepare("INSERT INTO Adresses (idUtilisateur, type, adresse, codePostal, ville) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$userId, $type, $adresse, $codePostal, $ville]);
+    }
+
+    private function updateAddress($userId, $type, $adresse, $codePostal, $ville) {
+        $stmt = $this->pdo->prepare("UPDATE Adresses SET adresse = ?, codePostal = ?, ville = ? WHERE idUtilisateur = ? AND type = ?");
+        $stmt->execute([$adresse, $codePostal, $ville, $userId, $type]);
     }
 }

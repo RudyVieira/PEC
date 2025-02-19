@@ -3,23 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/app/dist/css/outpout.css">
+    <link rel="stylesheet" href="dist/css/output.css">
     <title>Inscription Technicien</title>
 </head>
 <body>
-    <h1>Inscription Technicien</h1>
     <div class="container-form">
+        <h1>Inscription Technicien</h1> 
         <form action="/register-technicien" method="POST">
-            <input type="hidden" name="role" value="utilisateur">
-            <input type="text" name="nom" placeholder="Nom" required>
-            <input type="text" name="prenom" placeholder="Prénom" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="text" name="telephone" placeholder="Téléphone" required>
-            <input type="password" name="motDePasse" placeholder="Mot de passe" required>
-            <button type="submit">S'inscrire</button>
+            <input type="hidden" name="role" value="technicien">
+            
+            <div class="line">
+                <div class="nom">
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom" placeholder="Nom" required>    
+                </div>
+                <div class="nom">
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" placeholder="Prénom" required>
+                </div>
+            </div>
+            
+            <div class="line">
+                <div class="mail">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="tel">
+                    <label for="telephone">Téléphone :</label>
+                    <input type="text" id="telephone" name="telephone" placeholder="Téléphone" required>
+                </div>
+            </div>
+                        
+            <label for="motDePasse">Mot de passe :</label>
+            <input type="password" id="motDePasse" name="motDePasse" placeholder="Mot de passe" required>
+            
+            <button type="submit" class="button button-orange">S'inscrire</button>
         </form>
-        <p>Vous êtes utilisateur ? <a href="/register">Inscrivez-vous ici</a></p>
-        <a href="/login">Déjà inscrit ?</a>
+        <div class="links">
+            <a href="/register">Vous êtes utilisateur ? Inscrivez-vous ici</a>
+            <a href="/login">Déjà inscrit ?</a>
+        </div>
     </div>
 </body>
 </html>

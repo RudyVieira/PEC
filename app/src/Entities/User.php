@@ -11,6 +11,12 @@ class User {
     private $motDePasse;
     private $validationMail;
     private $role;
+    private $adresseBureau;
+    private $codePostalBureau;
+    private $villeBureau;
+    private $adresseDomicile;
+    private $codePostalDomicile;
+    private $villeDomicile;
 
     public function getId() {
         return $this->id;
@@ -74,5 +80,53 @@ class User {
 
     public function setRole($role) {
         $this->role = $role;
+    }
+
+    public function getAdresseBureau() {
+        return $this->adresseBureau;
+    }
+
+    public function setAdresseBureau($adresseBureau) {
+        $this->adresseBureau = $adresseBureau;
+    }
+
+    public function getCodePostalBureau() {
+        return $this->codePostalBureau;
+    }
+
+    public function setCodePostalBureau($codePostalBureau) {
+        $this->codePostalBureau = $codePostalBureau;
+    }
+
+    public function getVilleBureau() {
+        return $this->villeBureau;
+    }
+
+    public function setVilleBureau($villeBureau) {
+        $this->villeBureau = $villeBureau;
+    }
+
+    public function getAdresseDomicile() {
+        return $this->adresseDomicile;
+    }
+
+    public function setAdresseDomicile($adresseDomicile) {
+        $this->adresseDomicile = $adresseDomicile;
+    }
+
+    public function getCodePostalDomicile() {
+        return $this->codePostalDomicile;
+    }
+
+    public function setCodePostalDomicile($codePostalDomicile) {
+        $this->codePostalDomicile = $codePostalDomicile;
+    }
+
+    public function getVilleDomicile() {
+        return $this->villeDomicile;
+    }
+
+    public function setVilleDomicile($villeDomicile) {
+        $this->villeDomicile = $villeDomicile;
     }
 }

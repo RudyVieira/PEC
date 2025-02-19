@@ -28,8 +28,20 @@ class LoginController extends AbstractController {
 
         $user = $userManager->findByEmail($email);
 
-        if (!$user || !password_verify($motDePasse, $user->getMotDePasse())) {
-            return new Response(json_encode(['message' => 'Invalid email or password']), 400, ['Content-Type' => 'application/json']);
+        if (!$user) {
+            $errors['user'] = 'Adresse mail incorrecte';
+            ob_start();
+            include __DIR__ . '/../Views/login.html';
+            $content = ob_get_clean();
+            return new Response($content, 400, ['Content-Type' => 'text/html']);
+        }
+
+        if (!password_verify($motDePasse, $user->getMotDePasse())) {
+            $errors['password'] = 'Mot de passe incorrect';
+            ob_start();
+            include __DIR__ . '/../Views/login.html';
+            $content = ob_get_clean();
+            return new Response($content, 400, ['Content-Type' => 'text/html']);
         }
 
         session_start();
