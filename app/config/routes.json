@@ -39,7 +39,8 @@
         "path": "/validate.php",
         "methods": ["GET"],
         "controller": "ValidateController"
-
+    },
+    {
         "path": "/reserved",
         "methods": ["GET", "POST"],
         "controller": "ReservedController"

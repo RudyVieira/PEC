@@ -3,86 +3,146 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>
-        <?= $title ?>
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
+    <title>Réservation</title>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const services = <?= json_encode($services) ?>;
+            const services = [
+                { id: 1, nom: 'Réparation', tarifMinimum: 50 },
+                { id: 2, nom: 'Entretien', tarifMinimum: 75 },
+                { id: 3, nom: "Dépannage d'urgence", tarifMinimum: 100 }
+            ];
+            const dureeService = {
+                1: 60,
+                2: 90,
+                3: 120
+            };
+            const technicians = [
+                { id: 1, nom: 'Technicien 1', prenom: 'Prenom 1', plageHoraireDebut: '08:00', plageHoraireFin: '17:00' },
+                { id: 2, nom: 'Technicien 2', prenom: 'Prenom 2', plageHoraireDebut: '09:00', plageHoraireFin: '18:00' },
+                { id: 3, nom: 'Technicien 3', prenom: 'Prenom 3', plageHoraireDebut: '10:00', plageHoraireFin: '19:00' }
+            ];
+
             const serviceSelect = document.getElementById('idService');
-            const tarifInput = document.getElementById('tarif');
+            const tarifElement = document.getElementById('tarif');
+            const heureFinInput = document.getElementById('horaireFin');
 
             serviceSelect.addEventListener('change', function () {
                 const selectedServiceId = parseInt(serviceSelect.value);
                 const selectedService = services.find(service => service.id === selectedServiceId);
                 if (selectedService) {
-                    tarifInput.value = selectedService.tarifMinimum;
+                    tarifElement.textContent = selectedService.tarifMinimum;
+                    const heureDebut = document.getElementById('horaireDebut').value;
+                    if (heureDebut) {
+                        const [hours, minutes] = heureDebut.split(':').map(Number);
+                        const duree = dureeService[selectedServiceId] || 0;
+                        const date = new Date();
+                        date.setHours(hours, minutes + duree);
+                        heureFinInput.value = date.toTimeString().slice(0, 5);
+                    }
                 }
             });
 
+            document.getElementById('horaireDebut').addEventListener('change', function () {
+                const selectedServiceId = parseInt(serviceSelect.value);
+                const duree = dureeService[selectedServiceId] || 0;
+                const [hours, minutes] = this.value.split(':').map(Number);
+                const date = new Date();
+                date.setHours(hours, minutes + duree);
+                heureFinInput.value = date.toTimeString().slice(0, 5);
+            });
+
+            services.forEach(service => {
+                const option = document.createElement('option');
+                option.value = service.id;
+                option.textContent = service.nom;
+                serviceSelect.appendChild(option);
+            });
+
             if (services.length > 0) {
-                tarifInput.value = services[0].tarifMinimum;
+                tarifElement.textContent = services[0].tarifMinimum;
             }
+
+            const technicianSelect = document.getElementById('idTechnicien');
+            technicians.forEach(technician => {
+                const option = document.createElement('option');
+                option.value = technician.id;
+                option.textContent = `${technician.nom} ${technician.prenom} (${technician.plageHoraireDebut} - ${technician.plageHoraireFin})`;
+                technicianSelect.appendChild(option);
+            });
         });
+
+        function showStep1() {
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('bullet1').classList.add('active');
+            document.getElementById('bullet2').classList.remove('active');
+        }
+
+        function showStep2() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            document.getElementById('bullet1').classList.remove('active');
+            document.getElementById('bullet2').classList.add('active');
+        }
     </script>
 </head>
 
 <body>
-    <h1>
-        <?= $title ?>
-    </h1>
+    <div class="step-reserved">
+        <div class="progress-indicators">
+            <div id="bullet1" class="bullet active"></div>
+            <div id="bullet2" class="bullet"></div>
+        </div>
+        <h1>Votre demande d'intervention</h1>
 
-    <?php if (!empty($message)): ?>
-    <p>
-        <?= $message ?>
-    </p>
-    <?php endif; ?>
+        <form id="step1" action="/reserved" method="post">
+            <div class="form-group">
+                <label for="idService">Service:</label>
+                <select id="idService" name="idService" required></select>
+            </div>
 
-    <form action="/reserved" method="post">
-        <label for="dateDemande">Date de demande:</label>
-        <input type="date" id="dateDemande" name="dateDemande" required><br>
+            <div class="form-group">
+                <label for="lieuIntervention">Lieu d'intervention:</label>
+                <input type="text" id="lieuIntervention" name="lieuIntervention" placeholder="rue, code postal, ville" required>
+            </div>
 
-        <label for="lieuIntervention">Lieu d'intervention:</label>
-        <input type="text" id="lieuIntervention" name="lieuIntervention" required><br>
+            <div class="form-group">
+                <label for="vehicule">Véhicule:</label>
+                <input type="text" id="vehicule" name="vehicule" placeholder="marque, modèle" required>
+            </div>
 
-        <label for="horaireDebut">Horaire de début:</label>
-        <input type="time" id="horaireDebut" name="horaireDebut" required><br>
+            <div class="form-group">
+                <label for="horaireDebut">Heure de début:</label>
+                <input type="time" id="horaireDebut" name="horaireDebut" required>
+            </div>
 
-        <label for="horaireFin">Horaire de fin:</label>
-        <input type="time" id="horaireFin" name="horaireFin" required><br>
+            <div class="form-group">
+                <label for="horaireFin">Heure de fin:</label>
+                <input type="time" id="horaireFin" name="horaireFin" required readonly>
+            </div>
 
-        <label for="statut">Statut:</label>
-        <input type="checkbox" id="statut" name="statut"><br>
+            <p class="tarif">Prix: <span id="tarif">30</span>€</p>
 
-        <label for="tarif">Tarif:</label>
-        <input type="number" step="0.01" id="tarif" name="tarif" required readonly><br>
+            <div class="btn">
+                <a href="/profil" class="button button-green">Annuler</a>
+                <button type="button" onclick="showStep2()" class="button button-orange">Suivant</button>
+            </div>
+        </form>
 
-        <label for="idUtilisateur">Utilisateur:</label>
-        <input type="number" id="idUtilisateur" name="idUtilisateur" required><br>
+        <form id="step2" action="/reserved" method="post" style="display:none;">
+            <div class="form-group">
+                <label for="idTechnicien">Technicien:</label>
+                <select id="idTechnicien" name="idTechnicien" required></select>
+            </div>
 
-        <label for="idService">Service:</label>
-        <select id="idService" name="idService" required>
-            <?php foreach ($services as $service): ?>
-            <option value="<?= $service['id'] ?>">
-                <?= $service['nom'] ?>
-            </option>
-            <?php endforeach; ?>
-        </select><br>
-
-        <label for="idTechnicien">Technicien:</label>
-        <select id="idTechnicien" name="idTechnicien" required>
-            <?php foreach ($technicians as $technician): ?>
-            <option value="<?= $technician['id'] ?>">
-                <?= $technician['nom'] ?>
-                <?= $technician['prenom'] ?> (
-                <?= $technician['plageHoraireDebut'] ?> -
-                <?= $technician['plageHoraireFin'] ?>)
-            </option>
-            <?php endforeach; ?>
-        </select><br>
-
-        <button type="submit">Réserver</button>
-    </form>
+            <div class="btn">
+                <button type="button" onclick="showStep1()" class="button button-green">Retour</button>
+                <button type="submit" class="button button-orange">Réserver</button>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

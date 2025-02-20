@@ -14,9 +14,14 @@
 		}
 	}
 
+	* {
+		transition: all 0.5s;
+	}
+
 	body {
 		font-family: f.$font1;
 		background-color: var(--beige);
+		display: flex;
 	}
 
 	a {

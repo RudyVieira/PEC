@@ -1,0 +1,18 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$isLoggedIn = isset($_SESSION['user_email']);
+?>
+<div class="menu">
+    <ul>
+        <?php if ($isLoggedIn): ?>
+            <li><a href="/profil">Profil</a></li>
+        <?php else: ?>
+        <div class="bottom">
+            <li><a href="/logout">Se déconnexion</a></li>
+        </div>
+        <?php endif; ?>
+        <li><a href="/reserved" class="button button-orange">Intervention</a></li>
+    </ul>
+</div>

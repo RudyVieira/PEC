@@ -9,8 +9,8 @@
         justify-content: center;
         text-align: center;
         gap: f.rem(40);
-        max-width: 60%;
-        margin: f.rem(20) 0 f.rem(20) auto;
+        width: 60%;
+        margin: f.rem(20) auto;
         height: calc(100vh - f.rem(40));
 		border-radius: f.rem(20);
 		background-color: var(--green);

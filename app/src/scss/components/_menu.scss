@@ -3,32 +3,35 @@
 
 @layer components {
     .menu {
-        padding: f.rem(20);
-        gap: f.rem(16);
-        border-radius: f.rem(6);
-        border: 1px solid;
-        box-shadow: 0 f.rem(4) f.rem(6) 0 var(--shadow-color);
-        width: auto;
-        color: var(--text-color);
+            position: fixed;
+            padding: f.rem(30);
+            background-color: var(--green);
+            top: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 0;
+            border-top-right-radius: f.rem(20);
+            border-bottom-right-radius: f.rem(20);
 
-        & li {
-            list-style: none;
-            padding: f.rem(8) f.rem(10);
-            border-radius: f.rem(6);
-            transition: all 0.3s;
+        & ul {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            gap: f.rem(20);
 
-            &:hover {
-                background-color: var(--light-grey);
-                color: var(--text-color);
-            }
-        }
+            & li {
+                list-style: none;
+                padding: f.rem(8) f.rem(10);
+                border-radius: f.rem(6);
 
-        @each $name, $value in v.$colors {
-            @if $name != "text-color" and $name != "shadow-color" {
-                &--#{$name} {
-                    & li:hover {
-                        background-color: var(--#{$name}-hover);
-                        color: var(--white);
+                & a {
+                    color: var(--beige);
+                
+                    &:hover:not(.button) {
+                        color: var(--orange);
                     }
                 }
             }

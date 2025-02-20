@@ -10,6 +10,17 @@ CREATE TABLE `Utilisateur` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `Adresses` (
+  `id` INTEGER UNIQUE NOT NULL AUTO_INCREMENT,
+  `idUtilisateur` INTEGER NOT NULL,
+  `type` VARCHAR(50) NOT NULL,
+  `adresse` VARCHAR(255),
+  `codePostal` VARCHAR(10),
+  `ville` VARCHAR(50),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
 CREATE TABLE `Service` (
   `id` INTEGER UNIQUE NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(150) NOT NULL,

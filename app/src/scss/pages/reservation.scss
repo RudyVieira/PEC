@@ -1,0 +1,62 @@
+@use "../partials/functions" as f;
+@use "sass:color";
+@use "../partials/variables" as v;
+@layer pages {
+    .step-reserved {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        justify-content: center;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: f.rem(5);
+            margin-top: f.rem(20);
+
+            input,
+            select {
+                padding: f.rem(10) f.rem(20);
+                background-color: var(--green-pale);
+                border-radius: f.rem(10);
+                color: var(--black);
+                border: none;
+
+                &::placeholder {
+                    color: var(--green);
+                }
+            }
+        }
+
+        .btn {
+            display: flex;
+            justify-content: space-between;
+            margin-top: f.rem(20);
+        }
+
+        .progress-indicators {
+            display: flex;
+            justify-content: center;
+            margin-bottom: f.rem(20);
+
+            & .bullet {
+                width: f.rem(40);
+                height: f.rem(10);
+                border-radius: f.rem(20);
+                background-color: var(--orange-pale);
+                margin: 0 f.rem(5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+        
+                &.active {
+                    width: f.rem(100);
+                    background-color: var(--orange);
+                }
+            }
+        }
+    }
+}
