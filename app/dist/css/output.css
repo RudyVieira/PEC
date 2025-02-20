@@ -568,6 +568,10 @@
     color: var(--black);
     margin: 0;
   }
+  form button.button {
+    margin: 1.25rem 0;
+    padding: 0.625rem 1.25rem;
+  }
 }
 @layer pages {
   .step-reserved {

@@ -7,43 +7,91 @@
     <title>Modifier Profil</title>
 </head>
 <body>
-    <h1>Modifier Profil</h1>
-    <form action="/modify-profil" method="POST">
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($user->getNom() ?? '') ?>" required>
-        <br>
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($user->getPrenom() ?? '') ?>" required>
-        <br>
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" value="<?= htmlspecialchars($user->getEmail() ?? '') ?>" required>
-        <br>
-        <label for="telephone">Téléphone :</label>
-        <input type="text" id="telephone" name="telephone" value="<?= htmlspecialchars($user->getTelephone() ?? '') ?>" required>
-        <br>
-        <h2>Adresses</h2>
-        <h3>Bureau</h3>
-        <label for="adresseBureau">Adresse :</label>
-        <input type="text" id="adresseBureau" name="adresseBureau" value="<?= htmlspecialchars($user->getAdresseBureau() ?? '') ?>">
-        <br>
-        <label for="codePostalBureau">Code postal :</label>
-        <input type="text" id="codePostalBureau" name="codePostalBureau" value="<?= htmlspecialchars($user->getCodePostalBureau() ?? '') ?>">
-        <br>
-        <label for="villeBureau">Ville :</label>
-        <input type="text" id="villeBureau" name="villeBureau" value="<?= htmlspecialchars($user->getVilleBureau() ?? '') ?>">
-        <br>
-        <h3>Domicile</h3>
-        <label for="adresseDomicile">Adresse :</label>
-        <input type="text" id="adresseDomicile" name="adresseDomicile" value="<?= htmlspecialchars($user->getAdresseDomicile() ?? '') ?>">
-        <br>
-        <label for="codePostalDomicile">Code postal :</label>
-        <input type="text" id="codePostalDomicile" name="codePostalDomicile" value="<?= htmlspecialchars($user->getCodePostalDomicile() ?? '') ?>">
-        <br>
-        <label for="villeDomicile">Ville :</label>
-        <input type="text" id="villeDomicile" name="villeDomicile" value="<?= htmlspecialchars($user->getVilleDomicile() ?? '') ?>">
-        <br>
-        <button type="submit">Mettre à jour</button>
-    </form>
-    <a href="/profil">Retour au profil</a>
+    <?php include __DIR__ . '/menu.html'; ?>
+
+    <div class="container">
+        <h1>Modifier Profil</h1>
+        <div class="card">
+            <form action="/modify-profil" method="POST">
+                <div class="form-group">
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($user->getNom() ?? '') ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($user->getPrenom() ?? '') ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" value="<?= htmlspecialchars($user->getEmail() ?? '') ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Téléphone :</label>
+                    <input type="text" id="telephone" name="telephone" value="<?= htmlspecialchars($user->getTelephone() ?? '') ?>" required>
+                </div>
+                <button type="submit" class="button button-orange">Mettre à jour</button>
+            </form>
+        </div>
+
+        <div class="container-addresse-voiture">
+            <div class="container-adresses">
+                <h2>Adresses</h2>
+                <div class="card">
+                    <h3>Bureau</h3>
+                    <form action="/modify-profil" method="POST">
+                        <div class="form-group">
+                            <label for="adresseBureau">Adresse :</label>
+                            <input type="text" id="adresseBureau" name="adresseBureau" value="<?= htmlspecialchars($user->getAdresseBureau() ?? '') ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="codePostalBureau">Code postal :</label>
+                            <input type="text" id="codePostalBureau" name="codePostalBureau" value="<?= htmlspecialchars($user->getCodePostalBureau() ?? '') ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="villeBureau">Ville :</label>
+                            <input type="text" id="villeBureau" name="villeBureau" value="<?= htmlspecialchars($user->getVilleBureau() ?? '') ?>">
+                        </div>
+                        <button type="submit" class="button button-orange">Mettre à jour</button>
+                    </form>
+
+                    <h3>Domicile</h3>
+                    <form action="/modify-profil" method="POST">
+                        <div class="form-group">
+                            <label for="adresseDomicile">Adresse :</label>
+                            <input type="text" id="adresseDomicile" name="adresseDomicile" value="<?= htmlspecialchars($user->getAdresseDomicile() ?? '') ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="codePostalDomicile">Code postal :</label>
+                            <input type="text" id="codePostalDomicile" name="codePostalDomicile" value="<?= htmlspecialchars($user->getCodePostalDomicile() ?? '') ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="villeDomicile">Ville :</label>
+                            <input type="text" id="villeDomicile" name="villeDomicile" value="<?= htmlspecialchars($user->getVilleDomicile() ?? '') ?>">
+                        </div>
+                        <button type="submit" class="button button-orange">Mettre à jour</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="container-voiture">
+                <h2>Voiture</h2>
+                <div class="card">
+                    <form action="/modify-profil" method="POST">
+                        <div class="form-group">
+                            <label for="marque">Marque :</label>
+                            <input type="text" id="marque" name="marque" value="Renaud">
+                        </div>
+                        <div class="form-group">
+                            <label for="modele">Modèle :</label>
+                            <input type="text" id="modele" name="modele" value="Clio">
+                        </div>
+                        <button type="submit" class="button button-orange">Mettre à jour</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <a href="/profil" class="button button-green">Retour au profil</a>
+    </div>
 </body>
 </html>

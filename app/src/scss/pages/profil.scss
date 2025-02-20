@@ -29,4 +29,11 @@
             margin: 0;
         }
     }
+
+    form {
+        & button.button {
+            margin: f.rem(20) 0;
+            padding: f.rem(10) f.rem(20);
+        }
+    }
 }
