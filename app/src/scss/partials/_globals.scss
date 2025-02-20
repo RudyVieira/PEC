@@ -1,0 +1,36 @@
+@use "fonts" as f;
+@use "sass:color";
+@use "variables" as v;
+@layer base {
+	:root {
+		// parcourir la map $colors
+		@each $name, $value in v.$colors {
+			// pour chaque couleur : créer une variable css du même nom --black
+			// pour chaque couleur : créer une variable du type --black-hover (20% plus claire)
+			// pour éclaircir une couleur : utiliser color.scale contenu dans le module sass:color
+			--#{$name}: #{$value};
+			--#{$name}-hover: #{color.scale($value, $lightness: 10%)};
+			--#{$name}-transparent: #{color.change($value, $alpha: 40%)};
+		}
+	}
+
+	* {
+		transition: all 0.5s;
+	}
+
+	body {
+		font-family: f.$font1;
+		background-color: var(--beige);
+		display: flex;
+
+		@media (max-width: 600px) {
+			&.cover	{
+				background-color: var(--green);
+			}
+		}
+	}
+
+	a {
+		text-decoration: none;
+	}
+}

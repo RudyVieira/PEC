@@ -30,13 +30,13 @@ class SelectTechnicianController extends AbstractController {
         ]);
     }
 
-    private function getAvailableTechnicians($horaireDebut, $horaireFin) {
+    private function getAvailableTechnicians($horaireDebut) {
         $stmt = $this->db->prepare('
             SELECT t.*, u.nom, u.prenom FROM Technicien t
             JOIN Utilisateur u ON t.idUtilisateur = u.id
             WHERE t.plageHoraireDebut <= ? AND t.plageHoraireFin >= ?
         ');
-        $stmt->execute([$horaireDebut, $horaireFin]);
+        $stmt->execute([$horaireDebut, $horaireDebut]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

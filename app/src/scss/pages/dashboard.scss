@@ -1,0 +1,61 @@
+@use "../partials/functions" as f;
+@use "sass:color";
+@use "../partials/variables" as v;
+
+@layer pages {
+    .dashboard {
+        h1 {
+            color: var(--orange);
+            text-align: center;
+            margin-bottom: f.rem(30);
+        }
+
+        h2 {
+            color: var(--orange);
+        }
+
+        .card {
+            border-radius: f.rem(20);
+            background-color: var(--green-pale);
+            padding: f.rem(30);
+            display: grid;
+            gap: f.rem(20);
+            box-shadow: 0 0 f.rem(10) rgba(0, 0, 0, 0.1);
+
+            h2 {
+                margin-top: 0;
+            }
+
+            p {
+                color: var(--black);
+                margin: 0;
+            }
+        }
+
+        .chart-container {
+            position: relative;
+            height: f.rem(400);
+        }        
+    }
+
+
+    @media (min-width: 601px) {
+        .dashboard {
+            .card {
+                padding: f.rem(30);
+                margin-bottom: f.rem(30);
+            }
+
+            .chart-container {
+                height: f.rem(500);
+            }
+
+            .line-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: f.rem(20);
+            }            
+        }
+
+    }
+}

@@ -9,24 +9,24 @@ class Intervention extends AbstractEntity {
     public string $dateDemande;
     public string $lieuIntervention;
     public string $horaireDebut;
-    public string $horaireFin;
+    public ?string $horaireFin;
     public int $statut;
     public float $tarif;
     public int $idUtilisateur;
     public int $idService;
-    public ?int $idTechnicien; // Allow idTechnicien to be nullable
+    public ?int $idTechnicien;
 
     public function __construct(
         ?int $id,
         string $dateDemande,
         string $lieuIntervention,
         string $horaireDebut,
-        string $horaireFin,
+        ?string $horaireFin,
         int $statut,
         float $tarif,
         int $idUtilisateur,
         int $idService,
-        ?int $idTechnicien // Allow idTechnicien to be nullable
+        ?int $idTechnicien
     ) {
         $this->id = $id;
         $this->dateDemande = $dateDemande;
@@ -56,7 +56,7 @@ class Intervention extends AbstractEntity {
         return $this->horaireDebut;
     }
 
-    public function getHoraireFin(): string {
+    public function getHoraireFin(): ?string {
         return $this->horaireFin;
     }
 
@@ -92,7 +92,7 @@ class Intervention extends AbstractEntity {
         $this->horaireDebut = $horaireDebut;
     }
 
-    public function setHoraireFin(string $horaireFin) {
+    public function setHoraireFin(?string $horaireFin) {
         $this->horaireFin = $horaireFin;
     }
 

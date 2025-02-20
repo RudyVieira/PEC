@@ -1,43 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
-    <title>Connexion</title>
-</head>
-
-<body>
-    <div class="container-form">
-        <h1>Connexion</h1>
-        <form action="/login" method="POST">
-            <div class="line-container">
-                <label for="email">Email :</label>
-                <input type="email" id="email" name="email" placeholder="Email" required>
-                <?php if (isset($errors['user'])): ?>
-                <p class="error">
-                    <?= $errors['user'] ?>
-                </p>
-                <?php endif; ?>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
+        <link rel="icon" type="image/x-icon" href="/app/dist/img/favicon.svg">
+        <title>Connexion</title>
+    </head>
+    <body class="cover">
+        <div class="container-form">
+            <h1>Bienvenue !</h1>
+            <p class="orange-pale">Veuillez vous connecter pour accéder à votre compte</p>
+            <form action="/login" method="POST">
+                <div class="line-container">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <?php if (isset($errors['user'])): ?>
+                        <p class="error"><?= $errors['user'] ?></p>
+                    <?php endif; ?>
+                </div>
+                
+                <div class="line-container">
+                    <label for="motDePasse">Mot de passe :</label>
+                    <input type="password" id="motDePasse" name="motDePasse" placeholder="Mot de passe" required>
+                    <?php if (isset($errors['password'])): ?>
+                        <p class="error"><?= $errors['password'] ?></p>
+                    <?php endif; ?>                
+                </div>
+                
+                <button type="submit" class="button button-orange">Se connecter</button>
+            </form>
+            <div class="links">
+                <a href="/register">Pas encore inscrit ? Par ici !</a>
             </div>
-
-            <div class="line-container">
-                <label for="motDePasse">Mot de passe :</label>
-                <input type="password" id="motDePasse" name="motDePasse" placeholder="Mot de passe" required>
-                <?php if (isset($errors['password'])): ?>
-                <p class="error">
-                    <?= $errors['password'] ?>
-                </p>
-                <?php endif; ?>
-            </div>
-
-            <button type="submit" class="button button-orange">Se connecter</button>
-        </form>
-        <div class="links">
-            <a href="/register">Pas encore inscrit ? Inscrivez-vous ici</a>
         </div>
-    </div>
-</body>
-
+    </body>
 </html>

@@ -34,12 +34,12 @@ class ReservedController extends AbstractController {
                 $data['dateDemande'],
                 $data['lieuIntervention'],
                 $data['horaireDebut'],
-                $data['horaireFin'],
+                null,
                 $statut,
                 (float)$data['tarif'],
                 $user->getId(),
                 (int)$data['idService'],
-                null // Technicien will be selected in the next step
+                null
             );
 
             $_SESSION['intervention'] = $intervention;
@@ -48,16 +48,27 @@ class ReservedController extends AbstractController {
         }
 
         $services = $this->getServices();
+        $technicians = $this->getTechnicians();
 
         return $this->render('reserved', [
             'title' => 'Reserve an Intervention',
             'services' => $services,
+            'technicians' => $technicians,
             'message' => $message,
         ]);
     }
 
     private function getServices() {
         $stmt = $this->db->query('SELECT id, nom, tarifMinimum FROM Service');
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    private function getTechnicians() {
+        $stmt = $this->db->query('
+            SELECT t.id, t.plageHoraireDebut, t.plageHoraireFin, u.nom, u.prenom
+            FROM Technicien t
+            JOIN Utilisateur u ON t.idUtilisateur = u.id
+        ');
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
