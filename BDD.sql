@@ -7,6 +7,8 @@ CREATE TABLE `Utilisateur` (
   `validationMail` BOOLEAN,
   `telephone` VARCHAR(10),
   `role` VARCHAR(255) NOT NULL,
+  `adresseDomicile` VARCHAR(255),
+  `adresseTravail` VARCHAR(255),
   PRIMARY KEY (`id`)
 );
 
@@ -41,6 +43,7 @@ CREATE TABLE `Avis` (
   `note` INTEGER NOT NULL,
   `date` DATE NOT NULL,
   `idUtilisateur` INTEGER NOT NULL,
+  `idIntervention` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -75,6 +78,7 @@ CREATE TABLE `Intervention` (
   `idUtilisateur` INTEGER NOT NULL,
   `idService` INTEGER NOT NULL,
   `idTechnicien` INTEGER,
+  `idVehicule` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -97,3 +101,7 @@ ALTER TABLE `Intervention` ADD FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisa
 ALTER TABLE `Intervention` ADD FOREIGN KEY (`idService`) REFERENCES `Service` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE `Intervention` ADD FOREIGN KEY (`idTechnicien`) REFERENCES `Technicien` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION;
+
+ALTER TABLE `Avis` ADD FOREIGN KEY (`idIntervention`) REFERENCES `Intervention` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE `Intervention` ADD FOREIGN KEY (`idVehicule`) REFERENCES `Vehicule` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;

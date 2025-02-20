@@ -1,73 +1,72 @@
 [
-    {
-        "path": "/test",
-        "methods": ["GET"],
-        "controller": "TestController"
-    },
-    {
-
-        "path": "/logout",
-        "methods": ["GET"],
-        "controller": "LogoutController"
-    },
-    {
-        "path": "/register",
-        "methods": ["GET", "POST"],
-        "controller": "RegisterController"
-    },
-    {
-        "path": "/register-technicien",
-        "methods": ["GET", "POST"],
-        "controller": "RegisterController"
-    },
-    {
-        "path": "/login",
-        "methods": ["GET", "POST"],
-        "controller": "LoginController"
-    },
-    {
-        "path": "/profil",
-        "methods": ["GET"],
-        "controller": "ProfilController"
-    },
-    {
-        "path": "/modify-profil",
-        "methods": ["GET", "POST"],
-        "controller": "ModifyProfilController"
-    },
-    {
-        "path": "/validate.php",
-        "methods": ["GET"],
-        "controller": "ValidateController"
-
-        "path": "/reserved",
-        "methods": ["GET", "POST"],
-        "controller": "ReservedController"
-
-    },
-    {
-        "path": "/artists/:id",
-        "methods": ["GET"],
-        "controller": "GetArtistController"
-    },
-    {
-        "path": "/artists/:id",
-        "methods": ["PATCH"],
-        "controller": "PatchArtistController"
-    },
-    {
-        "path": "/artists/:id",
-        "methods": ["DELETE"],
-        "controller": "DeleteArtistController"
-    },
-    {
-        "path": "/artists",
-        "methods": ["GET"],
-        "controller": "GetArtistsController"
-    },
-    {
-        "path": "/artists",
-        "methods": ["POST"],
-        "controller": "PostArtistController"
-    }
+	{
+		"path": "/test",
+		"methods": ["GET"],
+		"controller": "TestController"
+	},
+	{
+		"path": "/logout",
+		"methods": ["GET"],
+		"controller": "LogoutController"
+	},
+	{
+		"path": "/register",
+		"methods": ["GET", "POST"],
+		"controller": "RegisterController"
+	},
+	{
+		"path": "/register-technicien",
+		"methods": ["GET", "POST"],
+		"controller": "RegisterController"
+	},
+	{
+		"path": "/login",
+		"methods": ["GET", "POST"],
+		"controller": "LoginController"
+	},
+	{
+		"path": "/profil",
+		"methods": ["GET"],
+		"controller": "ProfilController"
+	},
+	{
+		"path": "/modify-profil",
+		"methods": ["GET", "POST"],
+		"controller": "ModifyProfilController"
+	},
+	{
+		"path": "/validate.php",
+		"methods": ["GET"],
+		"controller": "ValidateController"
+	},
+	{
+		"path": "/reserved",
+		"methods": ["GET", "POST"],
+		"controller": "ReservedController"
+	},
+	{
+		"path": "/artists/:id",
+		"methods": ["GET"],
+		"controller": "GetArtistController"
+	},
+	{
+		"path": "/artists/:id",
+		"methods": ["PATCH"],
+		"controller": "PatchArtistController"
+	},
+	{
+		"path": "/artists/:id",
+		"methods": ["DELETE"],
+		"controller": "DeleteArtistController"
+	},
+	{
+		"path": "/artists",
+		"methods": ["GET"],
+		"controller": "GetArtistsController"
+	},
+	{
+		"path": "/artists",
+		"methods": ["POST"],
+		"controller": "PostArtistController"
+	}
 ]

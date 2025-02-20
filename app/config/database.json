@@ -3,14 +3,11 @@
     "user": "root",
     "password": "password",
     "database": "doc_2_wheels",
-
-    "port": 3306,
+    "port": 3307,
     "smtp": {
         "host": "sandbox.smtp.mailtrap.io",
         "port": 2525,
         "username": "8d960d6b8edfa0",
         "password": "2fc8415ed78107"
     }
-
-    "port": 3306
 }
