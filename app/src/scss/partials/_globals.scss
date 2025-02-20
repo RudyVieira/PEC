@@ -22,6 +22,12 @@
 		font-family: f.$font1;
 		background-color: var(--beige);
 		display: flex;
+
+		@media (max-width: 600px) {
+			&.cover	{
+				background-color: var(--green);
+			}
+		}
 	}
 
 	a {

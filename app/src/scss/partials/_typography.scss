@@ -1,0 +1,42 @@
+@use "fonts" as *;
+@use "functions" as f;
+@use "variables" as v;
+
+@layer typography {
+    h1 {
+        font-family: $font1;
+        font-size: f.rem(32);
+        font-weight: 700;
+        line-height: f.rem(32);
+        margin: 0;
+        margin-bottom: f.rem(30);
+    }
+
+    h2 {
+        font-family: $font1;
+        font-size: f.rem(28);
+        font-weight: 600;
+        line-height: f.rem(28);
+        margin: 0;
+        margin-bottom: f.rem(20);
+    }
+
+    h3,
+    .h3 {
+        font-family: $font1;
+        font-size: f.rem(24);
+        font-weight: 500;
+        line-height: f.rem(24);
+        margin: 0;
+        margin-bottom: f.rem(10);
+    }
+
+    p {
+        font-family: $font1;
+        font-size: f.rem(16);
+        font-weight: 400;
+        line-height: f.rem(16);
+        margin: 0;
+        margin-bottom: f.rem(5);
+    }
+}

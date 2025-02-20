@@ -10,6 +10,13 @@ CREATE TABLE `Utilisateur` (
   PRIMARY KEY (`id`)
 );
 
+INSERT INTO `Utilisateur` (`nom`, `prenom`, `motDePasse`, `email`, `validationMail`, `telephone`, `role`) VALUES
+('AdminNom', 'Admin', 'mdpadmin', 'admin@example.com', true, '0123456789', 'admin'),
+('TechnicienNom', 'Tech', 'mdptech', 'technicien@example.com', true, '0123456789', 'technicien'),
+('UtilisateurNom', 'User', 'mdptech', 'utilisateur@example.com', true, '0123456789', 'utilisateur');
+
+
+
 CREATE TABLE `Adresses` (
   `id` INTEGER UNIQUE NOT NULL AUTO_INCREMENT,
   `idUtilisateur` INTEGER NOT NULL,
@@ -29,6 +36,13 @@ CREATE TABLE `Service` (
   `tarifMinimum` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`id`)
 );
+
+INSERT INTO `Service` (`nom`, `description`, `duree`, `tarifMinimum`) VALUES
+("Réparation", "Service de réparation pour motos et scooters", 60, 50.00),
+("Entretien", "Service d'entretien régulier pour motos et scooters", 90, 75.00),
+("Dépannage d'urgence", "Service de dépannage d'urgence pour motos et scooters", 120, 100.00);
+
+
 
 CREATE TABLE `Type` (
   `id` INTEGER UNIQUE NOT NULL AUTO_INCREMENT,
@@ -62,6 +76,12 @@ CREATE TABLE `Technicien` (
   `idUtilisateur` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
+
+INSERT INTO `Technicien` (`plageHoraireDebut`, `plageHoraireFin`, `idUtilisateur`) VALUES
+('08:00:00', '17:00:00', 1),
+('09:00:00', '18:00:00', 2);
+
+
 
 CREATE TABLE `Specialite` (
   `id` INTEGER UNIQUE NOT NULL AUTO_INCREMENT,

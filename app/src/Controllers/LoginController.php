@@ -46,6 +46,7 @@ class LoginController extends AbstractController {
 
         session_start();
         $_SESSION['user_email'] = $user->getEmail();
+        $_SESSION['role'] = $user->getRole();
 
         return new Response('', 302, ['Location' => '/profil']);
     }

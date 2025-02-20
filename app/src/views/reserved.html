@@ -86,6 +86,16 @@
             document.getElementById('bullet1').classList.remove('active');
             document.getElementById('bullet2').classList.add('active');
         }
+
+        function showConfirmationPopup(event) {
+            event.preventDefault();
+            document.getElementById('confirmationModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('confirmationModal').style.display = 'none';
+            document.getElementById('step2').submit();
+        }
     </script>
 </head>
 
@@ -98,6 +108,8 @@
         <h1>Votre demande d'intervention</h1>
 
         <form id="step1" action="/reserved" method="post">
+            <h2 class="tarif">Prix: <span id="tarif">30</span>€</h2>
+
             <div class="form-group">
                 <label for="idService">Service:</label>
                 <select id="idService" name="idService" required></select>
@@ -123,25 +135,31 @@
                 <input type="time" id="horaireFin" name="horaireFin" required readonly>
             </div>
 
-            <p class="tarif">Prix: <span id="tarif">30</span>€</p>
-
-            <div class="btn">
+            <div class="btn mt-8">
                 <a href="/profil" class="button button-green">Annuler</a>
                 <button type="button" onclick="showStep2()" class="button button-orange">Suivant</button>
             </div>
         </form>
 
-        <form id="step2" action="/reserved" method="post" style="display:none;">
+        <form id="step2" action="/reserved" method="post" style="display:none;" onsubmit="showConfirmationPopup(event)">
             <div class="form-group">
                 <label for="idTechnicien">Technicien:</label>
                 <select id="idTechnicien" name="idTechnicien" required></select>
             </div>
 
-            <div class="btn">
+            <div class="btn mt-8">
                 <button type="button" onclick="showStep1()" class="button button-green">Retour</button>
                 <button type="submit" class="button button-orange">Réserver</button>
             </div>
         </form>
+    </div>
+
+    <div id="confirmationModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Votre demande d'intervention a été envoyée et sera bientôt acceptée.</p>
+            <button onclick="closeModal()" class="button button-orange">OK</button>
+        </div>
     </div>
 </body>
 
