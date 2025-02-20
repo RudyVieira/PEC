@@ -72,4 +72,8 @@ class Request
 
         return [];
     }
+
+    public function get(string $key) {
+        return $this->getBody()[$key] ?? null;
+    }
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <?= $title ?>
+    </title>
+</head>
+
+<body>
+    <h1>
+        <?= $title ?>
+    </h1>
+
+    <form action="/confirm-reservation" method="post">
+        <label for="idTechnicien">Technicien:</label>
+        <select id="idTechnicien" name="idTechnicien" required>
+            <?php foreach ($technicians as $technician): ?>
+            <option value="<?= $technician['id'] ?>">
+                <?= $technician['nom'] ?>
+                <?= $technician['prenom'] ?> (
+                <?= $technician['plageHoraireDebut'] ?> -
+                <?= $technician['plageHoraireFin'] ?>)
+            </option>
+            <?php endforeach; ?>
+        </select><br>
+
+        <button type="submit">Confirmer</button>
+    </form>
+</body>
+
+</html>

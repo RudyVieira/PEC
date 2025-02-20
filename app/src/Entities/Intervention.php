@@ -14,7 +14,7 @@ class Intervention extends AbstractEntity {
     public float $tarif;
     public int $idUtilisateur;
     public int $idService;
-    public int $idTechnicien;
+    public ?int $idTechnicien; // Allow idTechnicien to be nullable
 
     public function __construct(
         ?int $id,
@@ -26,7 +26,7 @@ class Intervention extends AbstractEntity {
         float $tarif,
         int $idUtilisateur,
         int $idService,
-        int $idTechnicien
+        ?int $idTechnicien // Allow idTechnicien to be nullable
     ) {
         $this->id = $id;
         $this->dateDemande = $dateDemande;
@@ -76,7 +76,7 @@ class Intervention extends AbstractEntity {
         return $this->idService;
     }
 
-    public function getIdTechnicien(): int {
+    public function getIdTechnicien(): ?int {
         return $this->idTechnicien;
     }
 
@@ -112,7 +112,7 @@ class Intervention extends AbstractEntity {
         $this->idService = $idService;
     }
 
-    public function setIdTechnicien(int $idTechnicien) {
+    public function setIdTechnicien(?int $idTechnicien) {
         $this->idTechnicien = $idTechnicien;
     }
 }

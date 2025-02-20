@@ -6,6 +6,7 @@ use App\Lib\Http\Request;
 use App\Lib\Http\Response;
 use App\Lib\Controllers\AbstractController;
 use App\Lib\Database\DatabaseConnexion;
+use App\Managers\UserManager;
 use App\Entities\Intervention;
 
 class ReservedController extends AbstractController {
@@ -16,11 +17,18 @@ class ReservedController extends AbstractController {
     }
 
     public function process(Request $request): Response {
+        session_start();
+        if (!isset($_SESSION['user_email'])) {
+            return new Response('', 302, ['Location' => '/login']);
+        }
+
         $message = '';
 
         if ($request->getMethod() === 'POST') {
             $data = $request->getBody();
             $statut = isset($data['statut']) && $data['statut'] === 'on' ? 1 : 0;
+            $userManager = new UserManager($this->db);
+            $user = $userManager->findByEmail($_SESSION['user_email']);
             $intervention = new Intervention(
                 null,
                 $data['dateDemande'],
@@ -29,52 +37,27 @@ class ReservedController extends AbstractController {
                 $data['horaireFin'],
                 $statut,
                 (float)$data['tarif'],
-                (int)$data['idUtilisateur'],
+                $user->getId(),
                 (int)$data['idService'],
-                (int)$data['idTechnicien']
+                null // Technicien will be selected in the next step
             );
 
-            $this->saveIntervention($intervention);
-            $message = 'Votre réservation est faite';
+            $_SESSION['intervention'] = $intervention;
+
+            return new Response('', 302, ['Location' => '/select-technician']);
         }
 
         $services = $this->getServices();
-        $technicians = $this->getAvailableTechnicians();
 
         return $this->render('reserved', [
             'title' => 'Reserve an Intervention',
             'services' => $services,
-            'technicians' => $technicians,
             'message' => $message,
-        ]);
-    }
-
-    private function saveIntervention(Intervention $intervention) {
-        $stmt = $this->db->prepare('INSERT INTO Intervention (dateDemande, lieuIntervention, horaire_debut, horaire_fin, statut, tarif, idUtilisateur, idService, idTechnicien) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-        $stmt->execute([
-            $intervention->getDateDemande(),
-            $intervention->getLieuIntervention(),
-            $intervention->getHoraireDebut(),
-            $intervention->getHoraireFin(),
-            $intervention->getStatut(),
-            $intervention->getTarif(),
-            $intervention->getIdUtilisateur(),
-            $intervention->getIdService(),
-            $intervention->getIdTechnicien()
         ]);
     }
 
     private function getServices() {
         $stmt = $this->db->query('SELECT id, nom, tarifMinimum FROM Service');
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    }
-
-    private function getAvailableTechnicians() {
-        $stmt = $this->db->prepare('
-            SELECT t.*, u.nom, u.prenom, t.plageHoraireDebut, t.plageHoraireFin FROM Technicien t
-            JOIN Utilisateur u ON t.idUtilisateur = u.id
-        ');
-        $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

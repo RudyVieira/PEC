@@ -1,37 +1,85 @@
 [
     {
         "path": "/test",
-        "methods": ["GET"],
+        "methods": [
+            "GET"
+        ],
         "controller": "TestController"
     },
     {
         "path": "/reserved",
-        "methods": ["GET", "POST"],
+        "methods": [
+            "GET",
+            "POST"
+        ],
         "controller": "ReservedController"
     },
     {
-        "path": "/artists/:id",
-        "methods": ["GET"],
-        "controller": "GetArtistController"
+        "path": "/select-technician",
+        "methods": [
+            "GET",
+            "POST"
+        ],
+        "controller": "SelectTechnicianController"
     },
     {
-        "path": "/artists/:id",
-        "methods": ["PATCH"],
-        "controller": "PatchArtistController"
+        "path": "/confirm-reservation",
+        "methods": [
+            "POST"
+        ],
+        "controller": "ConfirmReservationController"
     },
     {
-        "path": "/artists/:id",
-        "methods": ["DELETE"],
-        "controller": "DeleteArtistController"
+        "path": "/register",
+        "methods": [
+            "GET",
+            "POST"
+        ],
+        "controller": "RegisterController"
     },
     {
-        "path": "/artists",
-        "methods": ["GET"],
-        "controller": "GetArtistsController"
+        "path": "/register-technicien",
+        "methods": [
+            "GET",
+            "POST"
+        ],
+        "controller": "RegisterController"
     },
     {
-        "path": "/artists",
-        "methods": ["POST"],
-        "controller": "PostArtistController"
+        "path": "/login",
+        "methods": [
+            "GET",
+            "POST"
+        ],
+        "controller": "LoginController"
+    },
+    {
+        "path": "/profil",
+        "methods": [
+            "GET"
+        ],
+        "controller": "ProfilController"
+    },
+    {
+        "path": "/logout",
+        "methods": [
+            "GET"
+        ],
+        "controller": "LogoutController"
+    },
+    {
+        "path": "/modify-profil",
+        "methods": [
+            "GET",
+            "POST"
+        ],
+        "controller": "ModifyProfilController"
+    },
+    {
+        "path": "/validate.php",
+        "methods": [
+            "GET"
+        ],
+        "controller": "ValidateController"
     }
 ]
