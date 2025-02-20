@@ -13,8 +13,9 @@ $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
             <li><a href="/profil">Profil</a></li>
             <?php if ($isAdmin): ?>
                 <li><a href="/dashboard" class="button button-orange">Dashboard</a></li>
+            <?php else: ?>
+                <li><a href="/reserved" class="button button-orange">Intervention</a></li>
             <?php endif; ?>
-            <li><a href="/reserved" class="button button-orange">Intervention</a></li>
             <li><a href="/logout" class="button button-green-pale">Se déconnecter</a></li>
         <?php else: ?>
             <li><a href="/login">Se connecter</a></li>

@@ -45,5 +45,10 @@
         "methods": ["GET", "POST"],
         "controller": "ReservedController"
 
+    },
+    {
+        "path": "/dashboard",
+        "methods": ["GET"],
+        "controller": "DashboardController"
     }
 ]

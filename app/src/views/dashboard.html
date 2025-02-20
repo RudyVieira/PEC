@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+        <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.css">
+    </head>
+    <body>
+        <?php include __DIR__ . '/menu.html'; ?>
+        
+        <div class="container">
+            <h1>Suivi et Analyse des Performances</h1>
+
+            <div class="line-container">
+                <div class="card card-dashboard">
+                    <div class="info">
+                        <h2 class="h3">Nombre d'interventions</h2>
+                        <p>Total : 120</p>
+                    </div>
+                    <div class="info">
+                        <h2 class="h3">Satisfaction client</h2>
+                        <p>Moyenne : 4.5/5</p>
+                    </div>
+                    <div class="info">
+                        <h2 class="h3">Interventions en cours</h2>
+                        <p>5</p>
+                    </div>
+                    <div class="info">
+                        <h2 class="h3">Disponibilités</h2>
+                        <p>3 techniciens disponibles</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="line-container">
+                <div class="chart">
+                    <h2>Suivi des revenus générés par période</h2>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart">
+                    <h2>Suivi des revenus générés par technicien</h2>
+                    <div class="chart-container">
+                        <canvas id="technicianChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+        <script>
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            const revenueChart = new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Revenus',
+                        data: [1200, 1500, 1800, 2000, 2200, 2500, 2700, 3000, 3200, 3500, 3700, 4000],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            const technicianCtx = document.getElementById('technicianChart').getContext('2d');
+            const technicianChart = new Chart(technicianCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Technicien 1', 'Technicien 2', 'Technicien 3'],
+                    datasets: [{
+                        label: 'Revenus',
+                        data: [5000, 7000, 6000],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
