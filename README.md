@@ -55,5 +55,5 @@ http://localhost:8080/login
 
 ## Contributeurs
 - Noah OEU (https://github.com/SenkaX) - Back
-- Rudy VIEIRA (https://github.com/RudyVieira) - Front
-- Morgane DASSONVILLE (https://github.com/Jun080) - Création des diagrammes et Rédaction du cahier des charges
+- Rudy VIEIRA (https://github.com/RudyVieira) - Création des diagrammes et Rédaction du cahier des charges
+- Morgane DASSONVILLE (https://github.com/Jun080) - Front
