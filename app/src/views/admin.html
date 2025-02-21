@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+</head>
+
+<body>
+    <h1>Administration</h1>
+    <h2>Utilisateurs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Rôle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($users as $user): ?>
+            <tr>
+                <td>
+                    <?= htmlspecialchars($user['nom']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($user['prenom']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($user['email']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($user['telephone']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($user['role']) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h2>Techniciens</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($users as $user): ?>
+            <?php if ($user['role'] === 'technicien'): ?>
+            <tr>
+                <td>
+                    <?= htmlspecialchars($user['nom']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($user['prenom']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($user['email']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($user['telephone']) ?>
+                </td>
+            </tr>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h2>Services</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Tarif Minimum</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($services as $service): ?>
+            <tr>
+                <td>
+                    <?= htmlspecialchars($service['nom']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($service['tarifMinimum']) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h2>Véhicules</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Immatriculation</th>
+                <th>Utilisateur</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($vehicles as $vehicle): ?>
+            <tr>
+                <td>
+                    <?= htmlspecialchars($vehicle['marque']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($vehicle['modele']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($vehicle['immatriculation']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($vehicle['utilisateur_nom']) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h2>Interventions</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date de demande</th>
+                <th>Lieu d'intervention</th>
+                <th>Statut</th>
+                <th>Tarif</th>
+                <th>Service</th>
+                <th>Technicien</th>
+                <th>Utilisateur</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($interventions as $intervention): ?>
+            <tr>
+                <td>
+                    <?= htmlspecialchars($intervention['dateDemande']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['lieuIntervention']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['statut']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['tarif']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['service_nom']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['technicien_nom']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['utilisateur_nom']) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</body>
+
+</html>
