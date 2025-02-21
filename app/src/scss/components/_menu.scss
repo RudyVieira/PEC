@@ -45,6 +45,7 @@
 
     .menu-button-container {
         position: fixed;
+        top: 0;
         border-bottom-right-radius: f.rem(10);
         border-bottom-left-radius: f.rem(10);
         padding: f.rem(15);
@@ -54,6 +55,12 @@
         width: 100%;
         justify-content: space-between;
         background-color: var(--green);
+
+        & {
+            & img {
+                max-height: f.rem(40);
+            }
+        }
         
         & .menu-button {
             background-color: var(--orange);
