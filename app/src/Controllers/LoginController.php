@@ -52,6 +52,8 @@ class LoginController extends AbstractController {
 
         if ($user->getRole() === 'admin') {
             return new Response('', 302, ['Location' => '/admin']);
+        } elseif ($user->getRole() === 'technicien') {
+            return new Response('', 302, ['Location' => '/profil-technicien']);
         }
 
         return new Response('', 302, ['Location' => '/profil']);

@@ -36,4 +36,16 @@ class InterventionManager {
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function findByTechnicianId(int $technicianId): array {
+        $stmt = $this->pdo->prepare('
+            SELECT i.*, s.nom AS service_nom, u2.nom AS utilisateur_nom
+            FROM Intervention i
+            JOIN Service s ON i.idService = s.id
+            JOIN Utilisateur u2 ON i.idUtilisateur = u2.id
+            WHERE i.idTechnicien = ?
+        ');
+        $stmt->execute([$technicianId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

@@ -109,5 +109,62 @@
             "GET"
         ],
         "controller": "AdminController"
+    },
+    {
+        "path": "/admin/delete-user",
+        "methods": [
+            "POST"
+        ],
+        "controller": "AdminController",
+        "action": "deleteUser"
+    },
+    {
+        "path": "/admin/edit-user",
+        "methods": [
+            "GET",
+            "POST"
+        ],
+        "controller": "AdminController",
+        "action": "editUser"
+    },
+    {
+        "path": "/admin/add-user",
+        "methods": [
+            "POST"
+        ],
+        "controller": "AdminController",
+        "action": "addUser"
+    },
+    {
+        "path": "/admin/delete-intervention",
+        "methods": [
+            "POST"
+        ],
+        "controller": "AdminController",
+        "action": "deleteIntervention"
+    },
+    {
+        "path": "/admin/edit-intervention",
+        "methods": [
+            "GET",
+            "POST"
+        ],
+        "controller": "AdminController",
+        "action": "editIntervention"
+    },
+    {
+        "path": "/admin/add-intervention",
+        "methods": [
+            "POST"
+        ],
+        "controller": "AdminController",
+        "action": "addIntervention"
+    },
+    {
+        "path": "/profil-technicien",
+        "methods": [
+            "GET"
+        ],
+        "controller": "ProfilTechnicienController"
     }
 ]
