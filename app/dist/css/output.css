@@ -184,6 +184,9 @@
     --green-pale: #94BBBE;
     --green-pale-hover: rgb(158.7, 193.8, 196.5);
     --green-pale-transparent: rgba(148, 187, 190, 0.4);
+    --complete: #159d3e;
+    --complete-hover: rgb(24.9168539326, 186.2831460674, 73.5640449438);
+    --complete-transparent: rgba(21, 157, 62, 0.4);
   }
   * {
     transition: all 0.5s;
@@ -191,12 +194,17 @@
   body {
     font-family: "Poppins", sans-serif;
     background-color: var(--beige);
-    display: flex;
   }
   @media (max-width: 600px) {
     body.cover {
       background-color: var(--green);
     }
+  }
+  .mx-auto {
+    margin: auto;
+  }
+  .highlight {
+    font-weight: bold;
   }
   a {
     text-decoration: none;
@@ -613,6 +621,15 @@
   .green-pale {
     color: var(--green-pale);
   }
+  .bg-complete {
+    background-color: var(--complete);
+  }
+  .border-complete {
+    border-color: var(--complete);
+  }
+  .complete {
+    color: var(--complete);
+  }
 }
 @layer pages {
   .profile h1 {
@@ -680,6 +697,34 @@
       margin-top: 3.125rem;
     }
   }
+  .interventions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.25rem;
+    font-size: 1rem;
+    text-align: left;
+    border: 1px solid var(--green);
+    border-radius: 0.625rem;
+  }
+  .interventions-table th, .interventions-table td {
+    padding: 1.25rem 1.5625rem;
+  }
+  .interventions-table th {
+    background-color: var(--green);
+    color: var(--beige);
+  }
+  .interventions-table tr {
+    border-bottom: 1px solid var(--green);
+  }
+  .interventions-table td {
+    color: var(--black);
+  }
+  .interventions-table .status-completed {
+    color: var(--complete);
+  }
+  .interventions-table .status-in-progress {
+    color: var(--orange);
+  }
 }
 @layer pages {
   .dashboard h1 {
@@ -731,6 +776,7 @@
     flex-direction: column;
     min-height: 100vh;
     justify-content: center;
+    max-width: 100%;
   }
   .step-reserved h2.tarif {
     color: var(--black);
@@ -785,6 +831,10 @@
   @media (min-width: 601px) {
     .step-reserved {
       margin: 4.375rem auto;
+      max-width: 40%;
+    }
+    .step-reserved h1 {
+      text-align: center;
     }
     .step-reserved .btn {
       flex-direction: row;

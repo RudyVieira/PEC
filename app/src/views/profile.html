@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
-        <link rel="icon" type="image/x-icon" href="/dist/img/favicon.png">
-        <title>Profil</title>
-    </head>
-    <body class="profile">
-        <?php include __DIR__ . '/menu.html'; ?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
+    <link rel="icon" type="image/x-icon" href="/dist/img/favicon.png">
+    <title>Profil</title>
+</head>
+<body class="profile">
+    <?php include __DIR__ . '/menu.html'; ?>
 
+    <section class="informations">
         <div class="container">
-            <h1>Bienvenue <?= htmlspecialchars($user->getPrenom()) ?> <?= htmlspecialchars($user->getNom()) ?> !</h1>
+            <h1><?= htmlspecialchars($translations['welcome']) ?> <?= htmlspecialchars($user->getPrenom()) ?> <?= htmlspecialchars($user->getNom()) ?> !</h1>
             <div class="card card-profil">
                 <div class="info">
-                    <h2 class="h3">Adresse mail:</h2>
+                    <h2 class="h3"><?= htmlspecialchars($translations['email']) ?>:</h2>
                     <p><?= htmlspecialchars($user->getEmail()) ?></p>
                 </div>
                 <div class="info">
-                    <h2 class="h3">Téléphone:</h2>
+                    <h2 class="h3"><?= htmlspecialchars($translations['phone']) ?>:</h2>
                     <p><?= htmlspecialchars($user->getTelephone()) ?></p>
                 </div>
                 <div class="info">
-                    <h2 class="h3">Role:</h2>
+                    <h2 class="h3"><?= htmlspecialchars($translations['role']) ?>:</h2>
                     <p><?= htmlspecialchars($user->getRole()) ?></p>
                 </div>
             </div>
             
             <div class="container-addresse-voiture">
                 <div class="container-adresses mt-5">
-                    <h2>Adresses</h2>
+                    <h2><?= htmlspecialchars($translations['addresses']) ?></h2>
                     <div class="card">
                         <div>
-                            <h3>Bureau</h3>
+                            <h3><?= htmlspecialchars($translations['office']) ?></h3>
                             <div class="line-card">
                                 <p>28 place de la Bourse</p>
                                 <p>75002</p>
@@ -43,7 +44,7 @@
                             </div>                            
                         </div>
                         <div>
-                            <h3>Domicile</h3>
+                            <h3><?= htmlspecialchars($translations['home']) ?></h3>
                             <div class="line-card">
                                 <p>88 place de la Bourse</p>
                                 <p>75014</p>
@@ -57,14 +58,14 @@
                 </div>
 
                 <div class="container-voiture mt-5">
-                    <h2>Voiture</h2>
+                    <h2><?= htmlspecialchars($translations['car']) ?></h2>
                     <div class="card">
                         <div class="line-card">
-                            <h3>Marque</h3>
+                            <h3><?= htmlspecialchars($translations['brand']) ?></h3>
                             <p>Renaud</p>
                         </div>
                         <div class="line-card">
-                            <h3>Modèle</h3>
+                            <h3><?= htmlspecialchars($translations['model']) ?></h3>
                             <p>Clio</p>
                         </div>
                     </div>
@@ -72,9 +73,44 @@
             </div>
         
             <div class="links">
-                <a href="/modify-profil" class="button button-orange mt-5">Modifier son profil</a>  
-                <a href="/logout" class="button button-green-pale mt-5">Se déconnecter</a>
+                <a href="/modify-profil" class="button button-orange mt-5"><?= htmlspecialchars($translations['modify_profile']) ?></a>  
+                <a href="/logout" class="button button-green-pale mt-5"><?= htmlspecialchars($translations['logout']) ?></a>
             </div>
         </div>
-    </body>
+    </section>
+
+    <section class="interventions container">
+        <h2><?= htmlspecialchars($translations['intervention_history']) ?></h2>
+        <table class="interventions-table">
+            <thead>
+                <tr>
+                    <th><?= htmlspecialchars($translations['request_date']) ?></th>
+                    <th><?= htmlspecialchars($translations['location']) ?></th>
+                    <th><?= htmlspecialchars($translations['status']) ?></th>
+                    <th><?= htmlspecialchars($translations['price']) ?></th>
+                    <th><?= htmlspecialchars($translations['service']) ?></th>
+                    <th><?= htmlspecialchars($translations['technician']) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php for ($i = 0; $i < min(3, count($interventions)); $i++): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($interventions[$i]['dateDemande']) ?></td>
+                        <td><?= htmlspecialchars($interventions[$i]['lieuIntervention']) ?></td>
+                        <td class="highlight <?= $interventions[$i]['statut'] ? 'status-completed' : 'status-in-progress' ?>">
+                            <?= htmlspecialchars($interventions[$i]['statut'] ? $translations['completed'] : $translations['in_progress']) ?>
+                        </td>
+                        <td><?= htmlspecialchars($interventions[$i]['tarif']) ?> €</td>
+                        <td><?= htmlspecialchars($interventions[$i]['service_nom'] ?? 'N/A') ?></td>
+                        <td><?= htmlspecialchars(($interventions[$i]['technicien_nom'] ?? 'N/A') . ' ' . ($interventions[$i]['technicien_prenom'] ?? '')) ?></td>
+                    </tr>
+                <?php endfor; ?>
+            </tbody>
+        </table>
+
+        <div class="links">
+            <a href="/interventions" class="button button-orange mt-5"><?= htmlspecialchars($translations['view_all_interventions']) ?></a>  
+        </div>
+    </section>
+</body>
 </html>

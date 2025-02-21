@@ -8,6 +8,7 @@ use App\Lib\Controllers\AbstractController;
 use App\Lib\Database\DatabaseConnexion;
 use App\Managers\UserManager;
 use App\Entities\Intervention;
+use App\Utils\LanguageLoader;
 
 class ReservedController extends AbstractController {
     private $db;

@@ -2,16 +2,17 @@
 
 namespace App\Controllers;
 
-use App\Lib\Controllers\AbstractController;
 use App\Lib\Http\Request;
 use App\Lib\Http\Response;
 use App\Managers\UserManager;
+use App\Managers\InterventionManager;
 use PDO;
 
-class ProfilController extends AbstractController {
+class ProfilController extends BaseController {
 
     public function process(Request $request): Response {
-        session_start();
+        $this->initialize($request);
+        
         if (!isset($_SESSION['user_email'])) {
             return new Response('', 302, ['Location' => '/login']);
         }
@@ -35,8 +36,18 @@ class ProfilController extends AbstractController {
             return new Response('User not found', 404, ['Content-Type' => 'text/plain']);
         }
 
+        $interventionManager = new InterventionManager($pdo);
+        $interventions = $interventionManager->findByUserId($user->getId());
+
+        $translations = $this->translations;
+
+        $path = $request->getPath();
         ob_start();
-        include __DIR__ . '/../views/profile.html';
+        if ($path === '/profil') {
+            include __DIR__ . '/../views/profile.html';
+        } elseif ($path === '/interventions') {
+            include __DIR__ . '/../views/interventions.html';
+        }
         $content = ob_get_clean();
 
         return new Response($content, 200, ['Content-Type' => 'text/html']);

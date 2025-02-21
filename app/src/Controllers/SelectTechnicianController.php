@@ -6,6 +6,7 @@ use App\Lib\Http\Request;
 use App\Lib\Http\Response;
 use App\Lib\Controllers\AbstractController;
 use App\Lib\Database\DatabaseConnexion;
+use App\Utils\LanguageLoader;
 
 class SelectTechnicianController extends AbstractController {
     private $db;

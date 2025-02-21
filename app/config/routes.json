@@ -1,85 +1,57 @@
 [
     {
-        "path": "/test",
-        "methods": [
-            "GET"
-        ],
-        "controller": "TestController"
-    },
-    {
         "path": "/reserved",
-        "methods": [
-            "GET",
-            "POST"
-        ],
+        "methods": ["GET", "POST"],
         "controller": "ReservedController"
     },
     {
         "path": "/select-technician",
-        "methods": [
-            "GET",
-            "POST"
-        ],
+        "methods": ["GET", "POST"],
         "controller": "SelectTechnicianController"
     },
     {
         "path": "/confirm-reservation",
-        "methods": [
-            "POST"
-        ],
+        "methods": ["POST"],
         "controller": "ConfirmReservationController"
     },
     {
         "path": "/register",
-        "methods": [
-            "GET",
-            "POST"
-        ],
+        "methods": ["GET", "POST"],
         "controller": "RegisterController"
     },
     {
         "path": "/register-technicien",
-        "methods": [
-            "GET",
-            "POST"
-        ],
+        "methods": ["GET", "POST"],
         "controller": "RegisterController"
     },
     {
         "path": "/login",
-        "methods": [
-            "GET",
-            "POST"
-        ],
+        "methods": ["GET", "POST"],
         "controller": "LoginController"
     },
     {
         "path": "/profil",
-        "methods": [
-            "GET"
-        ],
+        "methods": ["GET"],
         "controller": "ProfilController"
     },
     {
         "path": "/logout",
-        "methods": [
-            "GET"
-        ],
+        "methods": ["GET"],
         "controller": "LogoutController"
     },
     {
         "path": "/modify-profil",
-        "methods": [
-            "GET",
-            "POST"
-        ],
+        "methods": ["GET", "POST"],
         "controller": "ModifyProfilController"
     },
     {
         "path": "/validate.php",
-        "methods": [
-            "GET"
-        ],
+        "methods": ["GET"],
         "controller": "ValidateController"
+    },
+    {
+        "path": "/interventions",
+        "methods": ["GET"],
+        "controller": "ProfilController"
     }
 ]
