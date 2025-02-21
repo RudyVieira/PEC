@@ -1,0 +1,123 @@
+@use "../partials/functions" as f;
+@use "../partials/variables" as v;
+@use "../partials/mixins" as m;
+
+@layer components {
+    .container-form {
+        padding: f.rem(50) f.rem(100);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: f.rem(40);
+        width: 60%;
+        margin: f.rem(20) auto;
+        height: calc(100vh - f.rem(40));
+        border-radius: f.rem(20);
+        background-color: var(--green);
+        font-size: f.rem(16);
+        line-height: f.rem(18);
+        font-weight: 600;
+
+        h1 {
+            color: var(--beige);
+        }
+
+        a {
+            color: var(--orange-pale);
+        }
+
+        p.error {
+            color: var(--orange);
+            margin: 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: f.rem(10);
+
+            label {
+                text-align: left;
+                margin-top: f.rem(20);
+                color: var(--beige);
+            }
+
+            input {
+                padding: f.rem(10) f.rem(20);
+                background-color: var(--beige);
+                border-radius: f.rem(10);
+                color: var(--black);
+                border: none;
+            }
+
+            button {
+                margin-top: f.rem(10);
+            }
+
+            .line {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: f.rem(30);
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: f.rem(10);
+                }
+            }
+
+            .line-container {
+                display: flex;
+                flex-direction: column;
+                gap: f.rem(10);
+            }
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: f.rem(10);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .container-form {
+            padding: f.rem(20) f.rem(10);
+            width: 100%;
+            gap: f.rem(20);
+            height: auto;
+            border-radius: f.rem(0);
+            margin: f.rem(35);
+
+            form {
+                gap: f.rem(20);
+
+                label {
+                    margin-top: f.rem(10);
+                }
+
+                input {
+                    padding: f.rem(8) f.rem(10);
+                }
+
+                button {
+                    margin-top: f.rem(20);
+                }
+
+                .line {
+                    grid-template-columns: 1fr;
+                    gap: f.rem(10);
+                }
+
+                .line-container {
+                    gap: f.rem(10);
+                }
+            }
+
+            .links {
+                gap: f.rem(10);
+            }
+        }
+    }
+}

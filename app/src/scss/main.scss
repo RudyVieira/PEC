@@ -1,0 +1,15 @@
+@use "partials/layers";
+@use "vendors/modern-normalize.css";
+@use "partials/globals";
+
+@use "partials/typography";
+@use "partials/utilities";
+
+@use "pages/profil";
+@use "pages/dashboard";
+@use "pages/reservation";
+
+@use "components/button";
+@use "components/menu";
+@use "components/container";
+@use "components/login-register";

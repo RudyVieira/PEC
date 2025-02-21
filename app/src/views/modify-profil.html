@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
+    <link rel="icon" type="image/x-icon" href="/dist/img/favicon.png">
+    <title>Modifier Profil</title>
+</head>
+
+<body>
+    <?php include __DIR__ . '/menu.html'; ?>
+
+    <div class="container">
+        <h1>Modifier Profil</h1>
+        <div class="card">
+            <form action="/modify-profil" method="POST">
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($nom ?? '') ?>" required>
+
+                <label for="prenom">Prénom:</label>
+                <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($prenom ?? '') ?>" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<?= htmlspecialchars($email ?? '') ?>" required>
+
+                <label for="telephone">Téléphone:</label>
+                <input type="text" id="telephone" name="telephone" value="<?= htmlspecialchars($telephone ?? '') ?>"
+                    required>
+
+                <label for="adresseBureau">Adresse Bureau:</label>
+                <input type="text" id="adresseBureau" name="adresseBureau"
+                    value="<?= htmlspecialchars($adresseBureau ?? '') ?>">
+
+                <label for="codePostalBureau">Code Postal Bureau:</label>
+                <input type="text" id="codePostalBureau" name="codePostalBureau"
+                    value="<?= htmlspecialchars($codePostalBureau ?? '') ?>">
+
+                <label for="villeBureau">Ville Bureau:</label>
+                <input type="text" id="villeBureau" name="villeBureau"
+                    value="<?= htmlspecialchars($villeBureau ?? '') ?>">
+
+                <label for="adresseDomicile">Adresse Domicile:</label>
+                <input type="text" id="adresseDomicile" name="adresseDomicile"
+                    value="<?= htmlspecialchars($adresseDomicile ?? '') ?>">
+
+                <label for="codePostalDomicile">Code Postal Domicile:</label>
+                <input type="text" id="codePostalDomicile" name="codePostalDomicile"
+                    value="<?= htmlspecialchars($codePostalDomicile ?? '') ?>">
+
+                <label for="villeDomicile">Ville Domicile:</label>
+                <input type="text" id="villeDomicile" name="villeDomicile"
+                    value="<?= htmlspecialchars($villeDomicile ?? '') ?>">
+
+                <label for="marqueVehicule">Marque du Véhicule:</label>
+                <input type="text" id="marqueVehicule" name="marqueVehicule"
+                    value="<?= htmlspecialchars($marqueVehicule ?? '') ?>">
+
+                <label for="modeleVehicule">Modèle du Véhicule:</label>
+                <input type="text" id="modeleVehicule" name="modeleVehicule"
+                    value="<?= htmlspecialchars($modeleVehicule ?? '') ?>">
+
+                <label for="immatriculationVehicule">Immatriculation du Véhicule:</label>
+                <input type="text" id="immatriculationVehicule" name="immatriculationVehicule"
+                    value="<?= htmlspecialchars($immatriculationVehicule ?? '') ?>">
+
+                <button type="submit">Enregistrer</button>
+            </form>
+        </div>
+
+        <a href="/profil" class="button button-green">Retour au profil</a>
+    </div>
+</body>
+
+</html>

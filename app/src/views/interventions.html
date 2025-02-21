@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
+        <link rel="icon" type="image/x-icon" href="/dist/img/favicon.png">
+        <title>Profil</title>
+    </head>
+    <body class="interventions">
+        <?php include __DIR__ . '/menu.html'; ?>
+
+        <section class="interventions container">
+            <h2>Historique des interventions</h2>
+            <div class="interventions-table-container">
+                <table class="interventions-table">
+                    <thead>
+                        <tr>
+                            <th>Date de demande</th>
+                            <th>Lieu d'intervention</th>
+                            <th>Statut</th>
+                            <th>Tarif</th>
+                            <th>Service</th>
+                            <th>Technicien</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($interventions as $intervention): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($intervention['dateDemande']) ?></td>
+                                <td><?= htmlspecialchars($intervention['lieuIntervention']) ?></td>
+                                <td class="<?= $intervention['statut'] ? 'status-completed' : 'status-in-progress' ?>">
+                                    <?= htmlspecialchars($intervention['statut'] ? 'Complété' : 'En cours') ?>
+                                </td>
+                                <td><?= htmlspecialchars($intervention['tarif']) ?> €</td>
+                                <td><?= htmlspecialchars($intervention['service_nom'] ?? 'N/A') ?></td>
+                                <td><?= htmlspecialchars(($intervention['technicien_nom'] ?? 'N/A') . ' ' . ($intervention['technicien_prenom'] ?? '')) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>                
+            </div>
+        </section>
+    </body>
+</html>

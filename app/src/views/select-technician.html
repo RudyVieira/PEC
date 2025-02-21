@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
+        <link rel="icon" type="image/x-icon" href="/dist/img/favicon.png">
+        <title>Sélection du technicien</title>
+    </head>
+    <body>
+        <div class="step-reserved">
+            <div class="progress-indicators">
+                <div id="bullet1" class="bullet"></div>
+                <div id="bullet2" class="bullet active"></div>
+            </div>
+            <h1>Votre demande d'intervention</h1>
+
+            <form action="/confirm-reservation" method="post">
+                <div class="form-group">
+                    <label for="idTechnicien">Technicien:</label>
+                    <select id="idTechnicien" name="idTechnicien" required>
+                        <?php foreach ($technicians as $technician): ?>
+                        <option value="<?= $technician['id'] ?>">
+                            <?= $technician['nom'] ?>
+                            <?= $technician['prenom'] ?> (
+                            <?= $technician['plageHoraireDebut'] ?> -
+                            <?= $technician['plageHoraireFin'] ?>)
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="btn mt-8">
+                    <a type="button" href="/reserved" class="button button-green">Retour</a>
+                    <button type="submit" class="button button-orange">Réserver</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

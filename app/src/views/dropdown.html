@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
+    <title>Language Selection</title>
+</head>
+<body>
+    <?php
+    $currentUrl = $_SERVER['REQUEST_URI'];
+    ?>
+    <form action="<?= htmlspecialchars($currentUrl) ?>" method="POST" id="langForm">
+        <label for="langSelect">Select Language:</label>
+        <select name="lang" id="langSelect" onchange="document.getElementById('langForm').submit();">
+            <option value="fr" <?= $_SESSION['lang'] === 'fr' ? 'selected' : '' ?>>Français</option>
+            <option value="en" <?= $_SESSION['lang'] === 'en' ? 'selected' : '' ?>>English</option>
+        </select>
+    </form>
+</body>
+</html>

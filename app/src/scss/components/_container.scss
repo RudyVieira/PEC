@@ -1,0 +1,17 @@
+@use "../partials/variables" as v;
+@use "../partials/functions" as f;
+@layer components {
+    .container {
+        margin: f.rem(200) auto f.rem(70);
+
+        @each $name, $screenSize in v.$breakpoints {
+            @media screen and (min-width: $screenSize) {
+                width: calc($screenSize - 10rem);
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            margin: f.rem(120) f.rem(35) f.rem(50);
+        }
+    }
+}

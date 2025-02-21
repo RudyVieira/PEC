@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="dist/css/output.css" />
+        <link rel="icon" type="image/x-icon" href="/dist/img/favicon.png">
+        <title>Profil</title>
+    </head>
+    <body class="profile">
+        <?php include __DIR__ . '/menu.html'; ?>
+
+        <section class="informations">
+            <div class="container">
+                <h1>Bienvenue <?= htmlspecialchars($user->getPrenom()) ?> <?= htmlspecialchars($user->getNom()) ?> !</h1>
+                <div class="card card-profil">
+                    <div class="info">
+                        <h2 class="h3">Adresse mail:</h2>
+                        <p><?= htmlspecialchars($user->getEmail()) ?></p>
+                    </div>
+                    <div class="info">
+                        <h2 class="h3">Téléphone:</h2>
+                        <p><?= htmlspecialchars($user->getTelephone()) ?></p>
+                    </div>
+                    <div class="info">
+                        <h2 class="h3">Role:</h2>
+                        <p><?= htmlspecialchars($user->getRole()) ?></p>
+                    </div>
+                </div>
+                
+                <div class="container-addresse-voiture">
+                    <div class="container-adresses mt-5">
+                        <h2>Adresses</h2>
+                        <div class="card">
+                            <div>
+                                <h3>Bureau</h3>
+                                <div class="line-card">
+                                    <p>28 place de la Bourse</p>
+                                    <p>75002</p>
+                                    <p>Paris</p>
+                                    <p><?= htmlspecialchars($user->getAdresseBureau() ?? '') ?></p>
+                                    <p><?= htmlspecialchars($user->getCodePostalBureau() ?? '') ?></p>
+                                    <p><?= htmlspecialchars($user->getVilleBureau() ?? '') ?></p>
+                                </div>                            
+                            </div>
+                            <div>
+                                <h3>Domicile</h3>
+                                <div class="line-card">
+                                    <p>88 place de la Bourse</p>
+                                    <p>75014</p>
+                                    <p>Paris</p>
+                                    <p><?= htmlspecialchars($user->getAdresseDomicile() ?? '') ?></p>
+                                    <p><?= htmlspecialchars($user->getCodePostalDomicile() ?? '') ?></p>
+                                    <p><?= htmlspecialchars($user->getVilleDomicile() ?? '') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="container-voiture mt-5">
+                        <h2>Voiture</h2>
+                        <div class="card">
+                            <div class="line-card">
+                                <h3>Marque</h3>
+                                <p>Renaud</p>
+                            </div>
+                            <div class="line-card">
+                                <h3>Modèle</h3>
+                                <p>Clio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="links">
+                    <a href="/modify-profil" class="button button-orange mt-5">Modifier son profil</a>  
+                    <a href="/logout" class="button button-green-pale mt-5">Se déconnecter</a>
+                </div>
+            </div>
+        </section>
+
+        <?php if (!$isAdmin): ?>
+            <section class="interventions container">
+                <h2>Historique des interventions</h2>
+                <div class="interventions-table-container">
+                    <table class="interventions-table">
+                        <thead>
+                            <tr>
+                                <th>Date de demande</th>
+                                <th>Lieu d'intervention</th>
+                                <th>Statut</th>
+                                <th>Tarif</th>
+                                <th>Service</th>
+                                <th>Technicien</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php for ($i = 0; $i < min(3, count($interventions)); $i++): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($interventions[$i]['dateDemande']) ?></td>
+                                    <td><?= htmlspecialchars($interventions[$i]['lieuIntervention']) ?></td>
+                                    <td class="highlight <?= $interventions[$i]['statut'] ? 'status-completed' : 'status-in-progress' ?>">
+                                        <?= htmlspecialchars($interventions[$i]['statut'] ? 'Terminée' : 'En cours') ?>
+                                    </td>
+                                    <td><?= htmlspecialchars($interventions[$i]['tarif']) ?> €</td>
+                                    <td><?= htmlspecialchars($interventions[$i]['service_nom'] ?? 'N/A') ?></td>
+                                    <td><?= htmlspecialchars(($interventions[$i]['technicien_nom'] ?? 'N/A') . ' ' . ($interventions[$i]['technicien_prenom'] ?? '')) ?></td>
+                                </tr>
+                            <?php endfor; ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="links">
+                    <a href="/interventions" class="button button-orange mt-5">Voir toutes les interventions</a>  
+                </div>
+            </section>
+        <?php endif; ?>
+    </body>
+</html>

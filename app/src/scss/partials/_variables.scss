@@ -1,0 +1,27 @@
+// Colors
+$orange: #FF6B35;
+$orange-pale: #F7C59F;
+$beige: #F6F7EB;
+$black: #353535;
+$dark-black: #232020;
+$green: #3C6E71;
+$green-pale: #94BBBE;
+$complete: #159d3e;
+
+$colors: (
+	"orange": $orange,
+	"orange-pale": $orange-pale,
+	"beige": $beige,
+	"black": $black,
+	"dark-black": $dark-black,
+	"green": $green,
+	"green-pale": $green-pale,
+	"complete": $complete,
+);
+
+$breakpoints: (
+	"sm": 576px,
+	"md": 768px,
+	"lg": 992px,
+	"xl": 1200px
+);
