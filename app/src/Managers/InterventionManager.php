@@ -40,4 +40,21 @@ class InterventionManager {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function findByTechnicianId(int $technicianId): array {
+        $stmt = $this->pdo->prepare('
+            SELECT i.*, s.nom AS service_nom, u.nom AS utilisateur_nom, u.prenom AS utilisateur_prenom
+            FROM Intervention i
+            LEFT JOIN Service s ON i.idService = s.id
+            LEFT JOIN Utilisateur u ON i.idUtilisateur = u.id
+            WHERE i.idTechnicien = ?
+        ');
+        $stmt->execute([$technicianId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function updateInterventionStatus(int $interventionId, int $status): bool {
+        $stmt = $this->pdo->prepare('UPDATE Intervention SET statut = ? WHERE id = ?');
+        return $stmt->execute([$status, $interventionId]);
+    }
 }

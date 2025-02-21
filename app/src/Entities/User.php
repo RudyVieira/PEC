@@ -20,6 +20,8 @@ class User {
     private $marqueVehicule;
     private $modeleVehicule;
     private $immatriculationVehicule;
+    private $plageHoraireDebut; // Ajouté
+    private $plageHoraireFin; // Ajouté
 
     public function getId() {
         return $this->id;
@@ -155,5 +157,21 @@ class User {
 
     public function setImmatriculationVehicule($immatriculationVehicule) {
         $this->immatriculationVehicule = $immatriculationVehicule;
+    }
+
+    public function getPlageHoraireDebut() {
+        return $this->plageHoraireDebut;
+    }
+
+    public function setPlageHoraireDebut($plageHoraireDebut) {
+        $this->plageHoraireDebut = $plageHoraireDebut;
+    }
+
+    public function getPlageHoraireFin() {
+        return $this->plageHoraireFin;
+    }
+
+    public function setPlageHoraireFin($plageHoraireFin) {
+        $this->plageHoraireFin = $plageHoraireFin;
     }
 }

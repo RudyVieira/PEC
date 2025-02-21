@@ -50,6 +50,10 @@ class LoginController extends AbstractController {
         $_SESSION['user_email'] = $user->getEmail();
         $_SESSION['role'] = $user->getRole();
 
-        return new Response('', 302, ['Location' => '/profil']);
+        if ($user->getRole() === 'technicien') {
+            return new Response('', 302, ['Location' => '/profil-technicien']);
+        } else {
+            return new Response('', 302, ['Location' => '/profil']);
+        }
     }
 }

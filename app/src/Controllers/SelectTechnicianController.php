@@ -20,7 +20,7 @@ class SelectTechnicianController extends AbstractController {
             return new Response('', 302, ['Location' => '/login']);
         }
 
-        $intervention = $_SESSION['intervention'];
+        $intervention = unserialize($_SESSION['intervention']);
         $technicians = $this->getAvailableTechnicians($intervention->getHoraireDebut(), $intervention->getHoraireFin());
 
         return $this->render('select-technician', [
@@ -37,6 +37,11 @@ class SelectTechnicianController extends AbstractController {
             WHERE t.plageHoraireDebut <= ? AND t.plageHoraireFin >= ?
         ');
         $stmt->execute([$horaireDebut, $horaireFin]);
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $technicians = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        // Debugging output
+        error_log('Technicians found: ' . print_r($technicians, true));
+
+        return $technicians;
     }
 }

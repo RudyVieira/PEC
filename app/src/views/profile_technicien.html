@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Profil du technicien</title>
+</head>
+
+<body>
+    <h1>Bienvenue,
+        <?= htmlspecialchars($technician->getNom()) ?>
+        <?= htmlspecialchars($technician->getPrenom()) ?> !
+    </h1>
+    <p>Email:
+        <?= htmlspecialchars($technician->getEmail()) ?>
+    </p>
+    <p>Téléphone:
+        <?= htmlspecialchars($technician->getTelephone()) ?>
+    </p>
+    <p>Plage horaire:
+        <?= htmlspecialchars($technician->getPlageHoraireDebut()) ?> -
+        <?= htmlspecialchars($technician->getPlageHoraireFin()) ?>
+    </p>
+    <a href="/logout">Se déconnecter</a>
+    <a href="/modify-profil">Modifier son profil</a>
+
+    <h2>Interventions</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date de demande</th>
+                <th>Lieu d'intervention</th>
+                <th>Horaire de début</th>
+                <th>Horaire de fin</th>
+                <th>Statut</th>
+                <th>Tarif</th>
+                <th>Service</th>
+                <th>Utilisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($interventions as $intervention): ?>
+            <tr>
+                <td>
+                    <?= htmlspecialchars($intervention['dateDemande']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['lieuIntervention']) ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['horaireDebut'] ?? '') ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['horaireFin'] ?? '') ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['statut'] ? 'Accepté' : 'En attente') ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['tarif']) ?> €
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['service_nom'] ?? 'N/A') ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($intervention['utilisateur_nom'] ?? 'N/A') ?>
+                </td>
+                <td>
+                    <?php if ($intervention['statut'] == 0): ?>
+                    <form action="/intervention" method="POST" style="display:inline;">
+                        <input type="hidden" name="interventionId" value="<?= $intervention['id'] ?>">
+                        <input type="hidden" name="status" value="1">
+                        <button type="submit">Accepter</button>
+                    </form>
+                    <form action="/intervention" method="POST" style="display:inline;">
+                        <input type="hidden" name="interventionId" value="<?= $intervention['id'] ?>">
+                        <input type="hidden" name="status" value="2">
+                        <button type="submit">Refuser</button>
+                    </form>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</body>
+
+</html>

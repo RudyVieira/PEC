@@ -19,6 +19,18 @@ class UserManager {
         return $stmt->fetch();
     }
 
+    public function findTechnicianByEmail($email) {
+        $stmt = $this->pdo->prepare('
+            SELECT u.*, t.plageHoraireDebut, t.plageHoraireFin
+            FROM Utilisateur u
+            JOIN Technicien t ON u.id = t.idUtilisateur
+            WHERE u.email = ?
+        ');
+        $stmt->execute([$email]);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, User::class);
+        return $stmt->fetch();
+    }
+
     public function save(User $user) {
         $stmt = $this->pdo->prepare("INSERT INTO Utilisateur (nom, prenom, email, telephone, motDePasse, validationMail, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([

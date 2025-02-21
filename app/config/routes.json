@@ -61,11 +61,25 @@
         "controller": "ProfilController"
     },
     {
+        "path": "/profil-technicien",
+        "methods": [
+            "GET"
+        ],
+        "controller": "ProfilTechnicienController"
+    },
+    {
         "path": "/historique",
         "methods": [
             "GET"
         ],
         "controller": "HistoriqueController"
+    },
+    {
+        "path": "/intervention",
+        "methods": [
+            "POST"
+        ],
+        "controller": "InterventionController"
     },
     {
         "path": "/logout",
