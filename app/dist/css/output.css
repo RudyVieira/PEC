@@ -854,6 +854,14 @@
     background-color: var(--orange-pale);
     color: var(--black);
   }
+  .button-orange-pale {
+    background-color: var(--orange-pale);
+    color: var(--black);
+  }
+  .button-orange-pale:hover {
+    background-color: var(--orange);
+    color: var(--black);
+  }
   .button-green {
     background-color: var(--green);
     color: var(--beige);
@@ -940,25 +948,34 @@
     .menu {
       display: block;
       position: fixed;
-      top: 1.875rem;
       width: 100%;
       transform: none;
       transition: none;
       height: auto;
       padding: 0;
       background-color: transparent;
+      background-color: var(--green);
+      border-bottom-left-radius: 1.25rem;
+      border-bottom-right-radius: 1.25rem;
     }
-    .menu ul {
+    .menu ul:not(.utilisateur-menu) {
       flex-direction: row;
       justify-content: space-between;
-      padding: 0.625rem 6.25rem;
-      background-color: var(--green);
-      border-radius: 1.25rem;
-      max-width: 80%;
+      padding: 0.9375rem 0rem;
       margin: auto;
       display: flex;
       align-items: center;
       gap: 1.25rem;
+    }
+    .menu ul:not(.utilisateur-menu) li.logo img {
+      max-height: 4.375rem;
+    }
+    .menu ul.utilisateur-menu {
+      display: flex;
+      flex-direction: row;
+      gap: 1.25rem;
+      align-items: center;
+      justify-content: flex-start;
     }
     .menu-button-container {
       display: none;

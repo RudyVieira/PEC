@@ -6,21 +6,24 @@ $isLoggedIn = isset($_SESSION['user_email']);
 $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 ?>
 <section class="menu-button-container">
-    <img src="./logo.svg" alt="Logo" class="logo">
+    <img src="/dist/img/logo.png" alt="Logo" class="logo">
     <button class="menu-button" onclick="toggleMenu()">☰</button>
 </section>
 <div class="menu">
-    <ul>
-        <li><img src="./logo.svg" alt="Logo" class="logo"></li>
-        <?php if ($isLoggedIn): ?>
-            <li><a href="/profil">Profil</a></li>
-            <?php if ($isAdmin): ?>
-                <li><a href="/dashboard" class="button button-orange">Dashboard</a></li>
+    <ul class="container">
+        <li class="logo"><img src="/dist/img/logo.png" alt="Logo"></li>
+
+        <ul class="utilisateur-menu">
+            <?php if ($isLoggedIn): ?>
+                    <li><a href="/interventions">Interventions</a></li>
+                    <li><a href="/profil">Profil</a></li>
+                <?php if ($isAdmin): ?>
+                    <li><a href="/dashboard" class="button button-orange">Dashboard</a></li>
+                <?php else: ?>
+                    <li><a href="/reserved" class="button button-orange">Demander une intervention</a></li>
+                <?php endif; ?>
             <?php else: ?>
-                <li><a href="/reserved" class="button button-orange">Intervention</a></li>
-            <?php endif; ?>
-            <li><a href="/logout" class="button button-green-pale">Se déconnecter</a></li>
-        <?php else: ?>
+        </ul>
             <li><a href="/login">Se connecter</a></li>
         <?php endif; ?>
     </ul>
@@ -30,5 +33,5 @@ $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
     function toggleMenu() {
         document.querySelector('.menu').classList.toggle('active');
         document.querySelector('.menu-button').classList.toggle('active');
-    }   
+    }
 </script>

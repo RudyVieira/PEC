@@ -74,25 +74,42 @@
         .menu {
             display: block;
             position: fixed;
-            top: f.rem(30);
             width: 100%;
             transform: none;
             transition: none;
             height: auto;
             padding: 0;
             background-color: transparent;
+            background-color: var(--green);
+            border-bottom-left-radius: f.rem(20);
+            border-bottom-right-radius: f.rem(20);
 
-            & ul {
+            & ul:not(.utilisateur-menu) {
                 flex-direction: row;
                 justify-content: space-between;
-                padding: f.rem(10) f.rem(100);
-                background-color: var(--green);
-                border-radius: f.rem(20);
-                max-width: 80%;
+                padding: f.rem(15) f.rem(0);
                 margin: auto;
                 display: flex;
                 align-items: center;
                 gap: f.rem(20);
+
+                & li {
+                    &.logo {
+                        & img {
+                            max-height: f.rem(70);
+                        }
+                    }
+                }
+            }
+
+            & ul {
+                &.utilisateur-menu {
+                    display: flex;
+                    flex-direction: row;
+                    gap: f.rem(20);
+                    align-items: center;
+                    justify-content: flex-start;
+                }
             }
         }
 
