@@ -39,10 +39,10 @@ class ReservedController extends AbstractController {
                 (float)$data['tarif'],
                 $user->getId(),
                 (int)$data['idService'],
-                null // Technicien will be selected in the next step
+                null 
             );
 
-            $_SESSION['intervention'] = $intervention;
+            $_SESSION['intervention'] = serialize($intervention);
 
             return new Response('', 302, ['Location' => '/select-technician']);
         }
