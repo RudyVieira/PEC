@@ -61,6 +61,13 @@
         "controller": "ProfilController"
     },
     {
+        "path": "/historique",
+        "methods": [
+            "GET"
+        ],
+        "controller": "HistoriqueController"
+    },
+    {
         "path": "/logout",
         "methods": [
             "GET"

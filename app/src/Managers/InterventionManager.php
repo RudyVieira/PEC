@@ -23,4 +23,21 @@ class InterventionManager {
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function findRecentByUserId(int $userId, int $limit): array {
+        $stmt = $this->pdo->prepare('
+            SELECT i.*, s.nom AS service_nom, u.nom AS technicien_nom, u.prenom AS technicien_prenom
+            FROM Intervention i
+            LEFT JOIN Service s ON i.idService = s.id
+            LEFT JOIN Technicien t ON i.idTechnicien = t.id
+            LEFT JOIN Utilisateur u ON t.idUtilisateur = u.id
+            WHERE i.idUtilisateur = :userId
+            ORDER BY i.dateDemande DESC
+            LIMIT :limit
+        ');
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

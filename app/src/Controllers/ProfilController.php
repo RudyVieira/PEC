@@ -37,7 +37,7 @@ class ProfilController extends AbstractController {
         }
 
         $interventionManager = new InterventionManager($pdo);
-        $interventions = $interventionManager->findByUserId($user->getId());
+        $interventions = $interventionManager->findRecentByUserId($user->getId(), 3);
 
         ob_start();
         include __DIR__ . '/../views/profile.html';
