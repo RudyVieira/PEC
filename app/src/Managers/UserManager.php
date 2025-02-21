@@ -19,6 +19,17 @@ class UserManager {
         return $stmt->fetch();
     }
 
+    public function findAll(): array {
+        $stmt = $this->pdo->query("SELECT * FROM Utilisateur");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function countByRole(string $role) {
+        $stmt = $this->pdo->prepare('SELECT COUNT(*) FROM Utilisateur WHERE role = :role');
+        $stmt->execute(['role' => $role]);
+        return $stmt->fetchColumn();
+    }
+
     public function save(User $user) {
         $stmt = $this->pdo->prepare("INSERT INTO Utilisateur (nom, prenom, email, telephone, motDePasse, validationMail, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([

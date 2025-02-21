@@ -1,9 +1,9 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-$isLoggedIn = isset($_SESSION['user_email']);
-$isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    $isLoggedIn = isset($_SESSION['user_email']);
+    $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 ?>
 <section class="menu-button-container">
     <img src="/dist/img/logo.png" alt="Logo" class="logo">
@@ -15,10 +15,12 @@ $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 
         <ul class="utilisateur-menu">
             <?php if ($isLoggedIn): ?>
+                <?php if (!$isAdmin): ?>
                     <li><a href="/interventions">Interventions</a></li>
+                <?php endif; ?>
                     <li><a href="/profil">Profil</a></li>
                 <?php if ($isAdmin): ?>
-                    <li><a href="/dashboard" class="button button-orange">Dashboard</a></li>
+                    <li><a href="/admin" class="button button-orange">Dashboard</a></li>
                 <?php else: ?>
                     <li><a href="/reserved" class="button button-orange">Demander une intervention</a></li>
                 <?php endif; ?>

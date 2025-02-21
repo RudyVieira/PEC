@@ -674,6 +674,9 @@
   .profile .bg-green .button {
     margin-top: 1.875rem;
   }
+  .interventions-table-container {
+    display: none;
+  }
   @media (min-width: 601px) {
     .profile h1 {
       margin-bottom: 3.125rem;
@@ -695,6 +698,9 @@
     }
     .profile .bg-green .button {
       margin-top: 3.125rem;
+    }
+    .interventions-table-container {
+      display: block;
     }
     .interventions-table {
       width: 100%;
@@ -725,9 +731,6 @@
       color: var(--orange);
     }
   }
-  .interventions-table {
-    display: none;
-  }
 }
 @layer pages {
   .dashboard h1 {
@@ -752,6 +755,12 @@
   .dashboard .card p {
     color: var(--black);
     margin: 0;
+  }
+  .dashboard .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.125rem;
+    margin: 3.125rem 0;
   }
   .dashboard .chart-container {
     position: relative;

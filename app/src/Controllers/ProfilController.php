@@ -2,17 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Lib\Controllers\AbstractController;
 use App\Lib\Http\Request;
 use App\Lib\Http\Response;
 use App\Managers\UserManager;
 use App\Managers\InterventionManager;
 use PDO;
 
-class ProfilController extends BaseController {
+class ProfilController extends AbstractController {
 
     public function process(Request $request): Response {
-        $this->initialize($request);
-        
+        session_start();
         if (!isset($_SESSION['user_email'])) {
             return new Response('', 302, ['Location' => '/login']);
         }
@@ -38,8 +38,6 @@ class ProfilController extends BaseController {
 
         $interventionManager = new InterventionManager($pdo);
         $interventions = $interventionManager->findByUserId($user->getId());
-
-        $translations = $this->translations;
 
         $path = $request->getPath();
         ob_start();

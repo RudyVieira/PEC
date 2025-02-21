@@ -13,7 +13,6 @@ use App\Lib\Database\DatabaseConnexion;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-use App\Utils\LanguageLoader;
 use PDOException;
 
 class RegisterController extends AbstractController {

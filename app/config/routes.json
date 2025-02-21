@@ -53,5 +53,10 @@
         "path": "/interventions",
         "methods": ["GET"],
         "controller": "ProfilController"
+    },
+    {
+        "path": "/admin",
+        "methods": ["GET"],
+        "controller": "AdminController"
     }
 ]

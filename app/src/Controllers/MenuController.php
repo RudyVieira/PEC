@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Lib\Http\Request;
 use App\Lib\Http\Response;
 use App\Lib\Controllers\AbstractController;
-use App\Utils\LanguageLoader;
 
 class TestController extends AbstractController {
 

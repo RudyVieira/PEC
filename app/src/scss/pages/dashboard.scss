@@ -32,6 +32,13 @@
             }
         }
 
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: f.rem(50);
+            margin: f.rem(50) 0;
+        }
+
         .chart-container {
             position: relative;
             height: f.rem(400);

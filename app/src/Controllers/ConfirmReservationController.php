@@ -7,7 +7,6 @@ use App\Lib\Http\Response;
 use App\Lib\Controllers\AbstractController;
 use App\Lib\Database\DatabaseConnexion;
 use App\Entities\Intervention;
-use App\Utils\LanguageLoader;
 
 class ConfirmReservationController extends AbstractController {
     private $db;
@@ -18,7 +17,6 @@ class ConfirmReservationController extends AbstractController {
 
     public function process(Request $request): Response {
         session_start();
-        $this->initialize($request);
         if (!isset($_SESSION['user_email']) || !isset($_SESSION['intervention'])) {
             return new Response('', 302, ['Location' => '/login']);
         }

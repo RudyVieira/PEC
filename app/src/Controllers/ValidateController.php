@@ -7,7 +7,6 @@ use App\Lib\Http\Request;
 use App\Lib\Http\Response;
 use App\Managers\UserManager;
 use App\Lib\Database\DatabaseConnexion; 
-use App\Utils\LanguageLoader;
 use PDOException;
 
 class ValidateController extends AbstractController {
