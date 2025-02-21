@@ -6,6 +6,7 @@ use App\Lib\Controllers\AbstractController;
 use App\Lib\Http\Request;
 use App\Lib\Http\Response;
 use App\Managers\UserManager;
+use App\Managers\InterventionManager;
 use PDO;
 
 class ProfilController extends AbstractController {
@@ -34,6 +35,9 @@ class ProfilController extends AbstractController {
         if (!$user) {
             return new Response('User not found', 404, ['Content-Type' => 'text/plain']);
         }
+
+        $interventionManager = new InterventionManager($pdo);
+        $interventions = $interventionManager->findByUserId($user->getId());
 
         ob_start();
         include __DIR__ . '/../views/profile.html';

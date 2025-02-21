@@ -5,39 +5,19 @@ namespace App\Entities;
 use App\Lib\Entities\AbstractEntity;
 
 class Intervention extends AbstractEntity {
-    public ?int $id;
-    public string $dateDemande;
-    public string $lieuIntervention;
-    public string $horaireDebut;
-    public string $horaireFin;
-    public int $statut;
-    public float $tarif;
-    public int $idUtilisateur;
-    public int $idService;
-    public ?int $idTechnicien; // Allow idTechnicien to be nullable
+    public ?int $id = null;
+    public string $dateDemande = '';
+    public string $lieuIntervention = '';
+    public string $horaireDebut = '';
+    public string $horaireFin = '';
+    public int $statut = 0;
+    public float $tarif = 0.0;
+    public int $idUtilisateur = 0;
+    public int $idService = 0;
+    public ?int $idTechnicien = null;
 
-    public function __construct(
-        ?int $id,
-        string $dateDemande,
-        string $lieuIntervention,
-        string $horaireDebut,
-        string $horaireFin,
-        int $statut,
-        float $tarif,
-        int $idUtilisateur,
-        int $idService,
-        ?int $idTechnicien // Allow idTechnicien to be nullable
-    ) {
-        $this->id = $id;
-        $this->dateDemande = $dateDemande;
-        $this->lieuIntervention = $lieuIntervention;
-        $this->horaireDebut = $horaireDebut;
-        $this->horaireFin = $horaireFin;
-        $this->statut = $statut;
-        $this->tarif = $tarif;
-        $this->idUtilisateur = $idUtilisateur;
-        $this->idService = $idService;
-        $this->idTechnicien = $idTechnicien;
+    public function __construct() {
+        // Constructeur sans arguments pour PDO
     }
 
     public function getId(): ?int {
@@ -78,6 +58,10 @@ class Intervention extends AbstractEntity {
 
     public function getIdTechnicien(): ?int {
         return $this->idTechnicien;
+    }
+
+    public function setId(?int $id) {
+        $this->id = $id;
     }
 
     public function setDateDemande(string $dateDemande) {
