@@ -30,8 +30,6 @@
             <tr>
                 <th>Date de demande</th>
                 <th>Lieu d'intervention</th>
-                <th>Horaire de début</th>
-                <th>Horaire de fin</th>
                 <th>Statut</th>
                 <th>Tarif</th>
                 <th>Service</th>
@@ -46,12 +44,6 @@
                 </td>
                 <td>
                     <?= htmlspecialchars($intervention['lieuIntervention']) ?>
-                </td>
-                <td>
-                    <?= htmlspecialchars($intervention['horaireDebut'] ?? '') ?>
-                </td>
-                <td>
-                    <?= htmlspecialchars($intervention['horaireFin'] ?? '') ?>
                 </td>
                 <td>
                     <?= htmlspecialchars($intervention['statut'] ? 'Complété' : 'En cours') ?>
