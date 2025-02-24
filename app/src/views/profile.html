@@ -81,7 +81,11 @@
 
         <?php if (!$isAdmin): ?>
             <section class="interventions container">
-                <h2>Historique des interventions</h2>
+                <?php if ($isTech): ?>
+                    <h2>Vos interventions</h2>
+                <?php else: ?>
+                    <h2>Historique des interventions</h2>
+                <?php endif; ?>
                 <div class="interventions-table-container">
                     <table class="interventions-table">
                         <thead>

@@ -21,7 +21,11 @@ class ValidateController extends AbstractController {
         }
 
         $userManager = new UserManager($pdo);
-        $email = $request->get('email');
+        $email = $_GET['email'] ?? null;
+
+        if (!$email) {
+            return new Response(json_encode(['message' => 'Email non fourni.']), 400, ['Content-Type' => 'application/json']);
+        }
 
         $user = $userManager->findByEmail($email);
         if (!$user) {

@@ -4,6 +4,7 @@
     }
     $isLoggedIn = isset($_SESSION['user_email']);
     $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+    $isTech = isset($_SESSION['role']) && $_SESSION['role'] === 'technicien';
 ?>
 <section class="menu-button-container">
     <img src="/dist/img/logo.png" alt="Logo" class="logo">

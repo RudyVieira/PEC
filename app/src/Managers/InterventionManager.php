@@ -19,6 +19,7 @@ class InterventionManager {
             JOIN Technicien t ON i.idTechnicien = t.id
             JOIN Utilisateur u1 ON t.idUtilisateur = u1.id
             JOIN Utilisateur u2 ON i.idUtilisateur = u2.id
+            ORDER BY i.id DESC
         ');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -38,6 +39,7 @@ class InterventionManager {
             JOIN Utilisateur u1 ON t.idUtilisateur = u1.id
             JOIN Utilisateur u2 ON i.idUtilisateur = u2.id
             WHERE i.idUtilisateur = ?
+            ORDER BY i.id DESC
         ');
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
